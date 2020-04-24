@@ -25,8 +25,7 @@ if (empty($email) || empty($password)) {
                 echo "data : " . $_SESSION['contact'] = $row['contact'];
                 echo "data : " . $_SESSION['detail'] = $row['detail'];
                 echo "data : " . $_SESSION['status'] = $row['status'];
-                echo "data : " . $_SESSION['avatar_id'] = $row['avatar_id'];
-                echo "data : " . $_SESSION['certificate_id'] = $row['certificate_id'];
+                echo "data : " . $_SESSION['avatar_path'] = $row['avatar_path'];
 
 
                 echo "เข้าสู่ระบบ เสร็จสิ้น ";
@@ -41,7 +40,7 @@ if (empty($email) || empty($password)) {
             }
         }
     } else {
-        echo '<script>alert("Wrong User Details")</script>';
+        echo '<script>alert("อีเมล หรือ รหัสผ่าน ไม่ถูกต้อง")</script>';
     }
 }
 

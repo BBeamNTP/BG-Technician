@@ -1,5 +1,10 @@
 <?php
 require 'header.php';
+require 'connection.php';
+
+$sql = "select * from users WHERE status ='techinician'";
+$result = mysqli_query($connect, $sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -8,9 +13,9 @@ require 'header.php';
 </head>
 <body>
 <div style="margin-left: 5%; margin-right: 5%; ">
-    <h3>ประเภทช่าง</h3>
     <div class="row">
-        <div class="col-md-2" style="margin-right: 5%">
+        <div class="col-md-2" style="margin-right: 5%;margin-top: -1%; margin-bottom: 100%">
+            <h3>ประเภทช่าง</h3>
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="#">ทั้งหมด</a></li>
                 <li><a href="#">ช่างประปา</a></li>
@@ -25,68 +30,20 @@ require 'header.php';
                 <li><a href="#">ช่างเฟอร์นิเจอร์</a></li>
             </ul>
         </div>
-        <div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >
+
+<?php while ($row = mysqli_fetch_array($result)) { ?>
+
+    <div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >
             <div class="card" style="width: auto;">
-                <img class="card-img-top" src="img/1.png" alt="Card image cap">
+                <img class="card-img-top" src="<?php echo $row['avatar_path']?>" alt="Card image cap" width="200px">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >
-            <div class="card" style="width: auto;">
-                <img class="card-img-top" src="img/1.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div><div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >
-            <div class="card" style="width: auto;">
-                <img class="card-img-top" src="img/1.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div><div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >
-            <div class="card" style="width: auto;">
-                <img class="card-img-top" src="img/1.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div><div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >
-            <div class="card" style="width: auto;">
-                <img class="card-img-top" src="img/1.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div><div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >
-            <div class="card" style="width: auto;">
-                <img class="card-img-top" src="img/1.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title"><?php echo $row['firstname']; echo "\n\n"; echo $row['lastname'];?></h5>
+                    <a href="#" class="btn btn-primary">รายละเอียดช่าง</a>
                 </div>
             </div>
         </div>
 
-
-
-
-        <div class="clearfix visible-lg"></div>
-    </div>
+<?php } ?>
 </div>
 </body>
 </html>

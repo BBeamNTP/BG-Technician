@@ -3,7 +3,7 @@
 function Upload_Avatar_img($id, $email)
 {
 
-    $target_dir = "uploads/img/Avatar/$id/$email/";
+    $target_dir = "uploads/$id/$email/avatar/";
     echo $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -30,7 +30,7 @@ function Upload_Avatar_img($id, $email)
     }
 
 // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 50000000) {
+    if ($_FILES["fileToUpload"]["size"] > 5000000) {
         echo " Sorry, your file is too large.";
         $uploadOk = 0;
     }

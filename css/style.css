@@ -138,7 +138,37 @@ div.fakefile {
     left: 0px;
     z-index: 1;
 }
+.drop-area {
+    width: 100px;
+    height: 25px;
+    border: 1px solid #999;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
 
+#thumbnail, div.removepic {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#thumbnail img {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+#thumbnail div.removepic:hover {
+    display: inline-block;
+    border: 1px dashed red;
+}
+
+canvas {
+    border: 1px solid red;
+}
+hr.style19 {
+    border-top: 4px solid #000;
+}
 /*input.file {*/
 /*    position: relative;*/
 /*    text-align: right;*/
