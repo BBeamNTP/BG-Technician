@@ -1,27 +1,41 @@
 <?php
 require 'header.php';
 require 'connection.php';
-if ((!isset($_SESSION['email']) && ($_SESSION['status'] != "techinician"))) {
-    header('location: login.php');
-}
+if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
 
-$email = $_SESSION['email'];
-$query = "SELECT * FROM users WHERE email = '$email'";
-$result = mysqli_query($connect, $query);
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_array($result)) {
+}elseif ((isset($_SESSION['email']) && ($_SESSION['status'] == "technician"))) {
+    $email = $_SESSION['email'];
+    $query = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($connect, $query);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
 
-           $_SESSION['id'] = $row['id'];
-           $_SESSION['firstname'] = $row['firstname'];
-           $_SESSION['lastname'] = $row['lastname'];
-           $_SESSION['sex'] = $row['sex'];
-           $_SESSION['address'] = $row['address'];
-           $_SESSION['contact'] = $row['contact'];
-           $_SESSION['detail'] = $row['detail'];
-           $_SESSION['status'] = $row['status'];
-           $_SESSION['avatar_path'] = $row['avatar_path'];
+            // เปลี่ยน ข้อมูลใน session เวลา update ข้อมูล
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['firstname'] = $row['firstname'];
+            $_SESSION['lastname'] = $row['lastname'];
+            $_SESSION['sex'] = $row['sex'];
+            $_SESSION['address'] = $row['address'];
+            $_SESSION['contact'] = $row['contact'];
+            $_SESSION['detail'] = $row['detail'];
+            $_SESSION['status'] = $row['status'];
+            $_SESSION['avatar_path'] = $row['avatar_path'];
+
+            $id = $row['id'];
+            $firstname = $row['firstname'];
+            $lastname = $row['lastname'];
+            $sex = $row['sex'];
+            $address = $row['address'];
+            $contact = $row['contact'];
+            $detail = $row['detail'];
+            $status= $row['status'];
+            $avatar_path= $row['avatar_path'];
+        }
     }
+}else{
+    echo "GET PROFILE ERROR !! ";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +89,7 @@ if (mysqli_num_rows($result) > 0) {
             <h2>ข้อมูลส่วนตัวช่าง</h2>
             <div class="container" style="margin-top: 5%">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <script type="text/javascript">
                             function readURL(input) {
                                 if (input.files && input.files[0]) {
@@ -91,15 +105,14 @@ if (mysqli_num_rows($result) > 0) {
                         </script>
                         <input class="btn btn-warning" type='file' onchange="readURL(this);" name="fileToUpload[]"
                                accept="image/*" id="fileToUpload[]" style="margin-bottom: 20px"/>
-                        <img id="blah" src="<?php echo $_SESSION['avatar_path'] ?>" alt="your image" width="300px"
+                        <img id="blah" src="<?php echo $avatar_path ?>" alt="your image" width="300px"
                              height="auto"/>
-
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
 
                         <div class="form-group">
                             <input type="email" class="form-control" name="email" placeholder="อีเมล์" required
-                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<?php echo $_SESSION['email'] ?>" disabled>
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<?php echo $email ?>" disabled>
                         </div>
 <!--                        <div class="form-group">-->
 <!--                            <input type="password" class="form-control" name="password" placeholder="รหัสผ่าน"-->
@@ -107,37 +120,183 @@ if (mysqli_num_rows($result) > 0) {
 <!--                        </div>-->
                         <div class="form-group">
                             <input type="text" class="form-control" name="firstname" placeholder="ชื่อจริง"
-                                   value="<?php echo $_SESSION['firstname'] ?>"
+                                   value="<?php echo $firstname ?>"
                                    required="true">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="lastname" placeholder="นามสกุล"
-                                   value="<?php echo $_SESSION['lastname'] ?>"
+                                   value="<?php echo $lastname ?>"
                                    required="true">
                         </div>
                         <div class="form-group" style="margin-bottom: 15px"> เพศ :&nbsp;
                             <label><input type="radio"
-                                          name="sex" <?php if (isset($_SESSION['sex']) && $_SESSION['sex'] == "male") echo "checked"; ?>
+                                          name="sex" <?php if (isset($sex) && $sex == "male") echo "checked"; ?>
                                           value="male" checked> เพศชาย </label>
                             <label><input type="radio"
-                                          name="sex" <?php if (isset($_SESSION['sex']) && $_SESSION['sex'] == "female") echo "checked"; ?>
+                                          name="sex" <?php if (isset($sex) && $sex == "female") echo "checked"; ?>
                                           value="female"> เพศหญิง </label>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="address" placeholder="ที่อยู่"
-                                   value="<?php echo $_SESSION['address'] ?>"
+                                   value="<?php echo $address ?>"
                                    required="true">
                         </div>
                         <div class="form-group">
                             <input type="tel" class="form-control" name="contact" placeholder="เบอร์โทรศัพท์"
-                                   value="<?php echo $_SESSION['contact'] ?>"
+                                   value="<?php echo $contact ?>"
                                    required="true">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="detail" placeholder="รายละเอียด" ><?php echo $_SESSION['detail'] ?></textarea>
+                            <textarea class="form-control" rows="3" name="detail" placeholder="รายละเอียด" ><?php echo $detail ?></textarea>
                         </div>
 
                     </div>
+
+
+                    <div class="card col-md-4">
+                        <!-- Default panel contents -->
+                        <?php
+                        $query = "SELECT * FROM work WHERE email = '$email'";
+                        $result = mysqli_query($connect, $query);
+                        $stack = array();
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                //        $_SESSION['id'] = $row['id'];
+                                $type = $row['work_name'];
+                                array_push($stack, $type);
+
+                            }
+                        }
+
+                        ?>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" >
+                                ช่างไฟฟ้า
+                                <label class="switch ">
+
+                                    <!--                                        ปลี่ยนสีที่ class=""; ด้านล่าง สีดูจาก css/stlye.css-->
+
+                                    <input type="checkbox" class="default" name="type1[1]" id="type1[]"
+                                           value="Electrician" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Electrician") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                ช่างประปา
+                                <label class="switch ">
+                                    <input type="checkbox" class="primary" name="type1[2]" id="type1[]"
+                                           value="Plumber" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Plumber") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                ช่างสี
+                                <label class="switch ">
+                                    <input type="checkbox" class="info" name="type1[3]" id="type1[]"
+                                           value="Painter" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Painter") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                ช่างปูน
+                                <label class="switch ">
+                                    <input type="checkbox" class="green" name="type1[4]" id="type1[]"
+                                           value="Plasterer" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Plasterer") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                ช่างเหล็ก
+                                <label class="switch ">
+                                    <input type="checkbox" class="success" name="type1[5]" id="type1[]"
+                                           value="Metalworker" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Metalworker") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                ช่างไม้
+                                <label class="switch ">
+                                    <input type="checkbox" class="warning" name="type1[6]" id="type1[]"
+                                           value="Carpenters" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Carpenters") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                ช่างหลังคา
+                                <label class="switch ">
+                                    <input type="checkbox" class="pink" name="type1[7]" id="type1[]"
+                                           value="Roof-technician" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Roof-technician") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                ช่างอิเล็กทรอนิกส์
+                                <label class="switch ">
+                                    <input type="checkbox" class="danger" name="type1[8]" id="type1[]"
+                                           value="Electronic-technician" <?php
+                                    for ($x = 0; $x <= 8;) {
+                                        if (isset($stack[$x]) && $stack[$x] == "Electronic-technician") {
+                                            echo "checked";
+                                            $x = 8;
+                                        }
+                                        $x++;
+                                    } ?> >
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+
 
                 </div>
                 <hr class="style20">
@@ -173,7 +332,7 @@ if (mysqli_num_rows($result) > 0) {
 
                             <div class="row">
                                 <?php
-                                $email = $_SESSION['email'];
+//                                $email = $_SESSION['email'];
                                 $query = "SELECT * FROM exprience WHERE email = '$email'";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_array($result)) {

@@ -73,7 +73,7 @@ if ($id == 1) {
             echo "Folder Created.";
         }
 
-        if (($_FILES['fileToUpload']['name'][0]=="")){
+        if ((@$_FILES['fileToUpload']['name'][0]=="")){
             echo "NO FILE SELECT NEW AVATAR !!!!!!";
             $path_avatar = $_SESSION['avatar_path'];
 
@@ -143,6 +143,22 @@ if ($id == 1) {
         else{
             echo "no file ";
         }
+    $query_del_ex = "DELETE FROM work WHERE email='$email'";
+    if (mysqli_query($connect, $query_del_ex)) {
+        echo "Del Finish ";
+    } else {
+        echo "Del error";
+    }
+    foreach ($_POST['type1'] AS $i => $text) {
+            echo "value of text[$i]='$text'<br />";
+        $query = "INSERT INTO work(email, work_name)
+                            VALUES('$email','$text')";
+        if (mysqli_query($connect, $query)) {
+        } else {
+            echo "error";
+        }
+    }
+
 
 //        $query_cer = "INSERT INTO certificate(cer_id, path_certificate) VALUES('$certificate','$path_Certificate')";
 //        if (mysqli_query($connect, $query_cer)) {

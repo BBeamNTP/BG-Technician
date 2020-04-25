@@ -3,7 +3,7 @@ require "connection.php";
 require "func_upload_img.php";
 
 $id = $_GET['id'];
-echo $email = $_POST['email'];
+$email = $_POST['email'];
 $password = $_POST['password'];
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
@@ -100,7 +100,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
             if (mysqli_query($connect, $query)) {
                 echo '<script>
                     alert("สมัครสมาชิกเสร็จสิ้น") 
-//                    window.location.href = \'login.php\';
+                    window.location.href = \'login.php\';
                   </script>';
             } else {
                 echo "error";
@@ -205,11 +205,11 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
             }
 
             $query = "INSERT INTO users(email, password, firstname, lastname, sex, address, contact, detail, status, avatar_path)
-                            VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$contact','$detail','technician', '$avatar_path')";
+                            VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$contact','$detail','wait', '$avatar_path')";
             if (mysqli_query($connect, $query)) {
                 echo '<script>
                     alert("สมัครสมาชิกเสร็จสิ้น")
-//                    window.location.href = \'login.php\';
+                    window.location.href = \'login.php\';
                   </script>';
             } else {
                 echo "error";

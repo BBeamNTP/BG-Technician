@@ -199,8 +199,17 @@ hr.style19 {
     float:right;
 }
 
+.switch2 {
+    position: relative;
+    display: inline-block;
+    max-width: 60px;
+    height: 34px;
+    float:right;
+}
+
 /* Hide default HTML checkbox */
 .switch input {display:none;}
+.switch2 input {display:none;}
 
 /* The slider */
 .slider {
@@ -250,7 +259,7 @@ input.pink:checked + .slider {
     background-color: #f400b8;
 }
 input.green:checked + .slider {
-    background-color: #09f400;
+    background-color: #60f420;
 }
 input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;

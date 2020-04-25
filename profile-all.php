@@ -1,9 +1,10 @@
 <?php
 require 'header.php';
 require 'connection.php';
-if ((!isset($_SESSION['email']) && ($_SESSION['status'] != "technician"))) {
+if ((!isset($_SESSION['email']))) {
     header('location: login.php');
 }
+
 $id = $_GET['id'];
 $query = "SELECT * FROM users WHERE id = '$id'";
 $result = mysqli_query($connect, $query);
@@ -22,6 +23,8 @@ if (mysqli_num_rows($result) > 0) {
         $avatar_path = $row['avatar_path'];
     }
 }
+function myFunction() {
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,11 +35,52 @@ if (mysqli_num_rows($result) > 0) {
 
 <div class="container">
     <div class="container" align="center" style="margin-top: 5px;">
-        <h2>ข้อมูลส่วนตัวช่าง</h2>
+        <h2>ข้อมูลส่วนตัวช่าง</h2><br>
         <div class="container">
-            <form method="get" action="index.php" style="margin-left: 100%">
+            <div class="col-md-7"></div>
+            <div class="col-md-3" style="margin-top: 8px">
+                <?php if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) { ?>
+                    <form method="get" action="index.php">
+                        <!-- Material unchecked disabled -->
+                        <li>สถานะตรวจสอบ ไม่ผ่าน/ผ่าน
+                            <label class="switch">
+                                <form method="post" onclick="window.location='admin-change-status.php?id=<?php echo $id ?>">
+                                    <input type="checkbox" class="green" name="type1" id="type1" value="technician"
+                                           onchange="window.location='admin-change-status.php?id=<?php echo $id ?>&status=<?php echo $status ?>'"
+                                        <?php
+                                        if (isset($status) && $status == "technician") {
+                                            echo "checked";
+                                        }
+                                        ?>
+                                    >
+                                </form>
+
+                                <span class="slider round"></span>
+                            </label>
+                        </li>
+
+                    </form>
+               <?php }else{?>
+                        <!-- Material unchecked disabled -->
+                        <li>สถานะตรวจสอบ รอ/ผ่าน
+                            <label class="switch">
+                                <input type="checkbox" class="green" name="type1[2]" id="type1[]" value="technician" <?php
+                                if (isset($status) && $status == "technician") {
+                                    echo "checked";
+                                }
+                                ?> disabled>
+                                <span class="slider round"></span>
+                            </label>
+                        </li>
+                <?php }?>
+
+            </div>
+            <div class="col-md-2">
+
+            <form method="get" action="index.php" >
                 <input type="submit" class="btn btn-primary" value="กลับสู่หน้าหลัก">
             </form>
+        </div>
         </div>
         <div class="container" style="margin-top: -3%;">
             <div class="container">

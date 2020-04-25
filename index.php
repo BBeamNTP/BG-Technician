@@ -19,7 +19,7 @@ $result = mysqli_query($connect, $sql);
     $sql = "SELECT us.id, us.firstname, us.lastname, us.avatar_path
 FROM users as us
 LEFT JOIN work as wk
-ON us.email = wk.email WHERE wk.work_name ='$value'";
+ON us.email = wk.email WHERE wk.work_name ='$value'limit {$start} , {$perpage}";
     $result = mysqli_query($connect, $sql);
 
 }
@@ -107,15 +107,15 @@ ON us.email = wk.email WHERE wk.work_name ='$value'";
             <nav style="margin-left: 18%">
                 <ul class="pagination">
                     <li>
-                        <a href="index.php?page=1" aria-label="Previous">
+                        <a href="index.php?page=1&id=<?php echo $id?>&value=<?php echo $value ?>" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     <?php for($i=1;$i<=$total_page;$i++){ ?>
-                        <li><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                        <li><a href="index.php?page=<?php echo $i; ?>&id=<?php echo $id?>&value=<?php echo $value ?>"><?php echo $i; ?></a></li>
                     <?php } ?>
                     <li>
-                        <a href="index.php?page=<?php echo $total_page;?>" aria-label="Next">
+                        <a href="index.php?page=<?php echo $total_page;?>&id=<?php echo $id?>&value=<?php echo $value ?>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
