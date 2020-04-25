@@ -33,7 +33,6 @@ require 'header.php';
                         <img id="blah" src="img/1.png" alt="your image" width="300px" height="auto"/>
 
                     </div>
-
                     <div class="col-md-4" style="margin-bottom: 20px; margin-top: 20px">
 
                         <div class="form-group">
