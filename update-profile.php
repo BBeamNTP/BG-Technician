@@ -64,7 +64,7 @@ if ($id == 1) {
 //    $certificate1 = $_POST['certificate1'];
 //    $certificate2 = $_POST['certificate2'];
 //    $certificate3 = $_POST['certificate3'];
-    echo " status : " . $status = "techinician";
+    echo " status : " . $status = "technician";
     $target_dir = "uploads/$id/$email/avatar/";
     $target_dir_exprience = "uploads/$id/$email/exprience/";
 
@@ -155,7 +155,7 @@ if ($id == 1) {
 
             echo '<script>
                         alert("เปลี่ยนแปลงข้อมูลเรียบร้อย")
-                        window.location.href = \'profile-techinician.php\';
+                        window.location.href = \'profile-technician.php\';
                   </script>';
         } else {
             echo "error";

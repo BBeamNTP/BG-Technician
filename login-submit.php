@@ -27,20 +27,17 @@ if (empty($email) || empty($password)) {
                 echo "data : " . $_SESSION['status'] = $row['status'];
                 echo "data : " . $_SESSION['avatar_path'] = $row['avatar_path'];
 
-
                 echo "เข้าสู่ระบบ เสร็จสิ้น ";
                 header("location:index.php");
-            } else {
-                //return false;
-                echo '<script>
+            }
+        }
+    } else {
+        //return false;
+        echo '<script>
                         alert("Wrong User Details")
                         window.location.href = \'login.php\';
                       </script>';
 
-            }
-        }
-    } else {
-        echo '<script>alert("อีเมล หรือ รหัสผ่าน ไม่ถูกต้อง")</script>';
     }
 }
 

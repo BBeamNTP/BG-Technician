@@ -30,7 +30,7 @@ $avatar = "img/3.png";
                             </div>
                         </form>
                     </div>
-                    <div class="panel-footer">ยังไม่ได้เป็นสมาชิกใช่ไหม ? <a href="register-member.php">สมัครสมาชิกทั่วไป</a> || <a href="register-techinician.php">สมัครสมาชิกสำหรับช่าง</a></div>
+                    <div class="panel-footer">ยังไม่ได้เป็นสมาชิกใช่ไหม ? <a href="register-member.php">สมัครสมาชิกทั่วไป</a> || <a href="register-technician.php">สมัครสมาชิกสำหรับช่าง</a></div>
                 </div>
             </div>
         </div>

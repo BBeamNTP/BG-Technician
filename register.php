@@ -77,7 +77,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
         if (mysqli_query($connect, $query)) {
             echo '<script>
                     alert("สมัครสมาชิกเสร็จสิ้น") 
-                    window.location.href = \'index.php\';
+                    window.location.href = \'login.php\';
                   </script>';
         } else {
             echo "error";
@@ -92,7 +92,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
 //    $certificate2 = $_POST['certificate2'];
 //    $certificate3 = $_POST['certificate3'];
 
-    echo " status : " . $status = "techinician";
+    echo " status : " . $status = "technician";
     $target_dir = "uploads/$id/$email/avatar/";
     $target_dir_exprience = "uploads/$id/$email/exprience/";
 
@@ -168,12 +168,24 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
 //        } else {
 //            echo " error ";
 //        }
+
+        // ปรพเภทงาน รับแบบ Array
+        foreach ($_POST['type1'] AS $i => $text) {
+//            echo "value of text[$i]='$text'<br />";
+            $query = "INSERT INTO work(email, work_name)
+                            VALUES('$email','$text')";
+            if (mysqli_query($connect, $query)) {
+            } else {
+                echo "error";
+            }
+        }
+
         $query = "INSERT INTO users(email, password, firstname, lastname, sex, address, contact, detail, status, avatar_path)
-                            VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$contact','$detail','techinician', '$avatar_path')";
+                            VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$contact','$detail','technician', '$avatar_path')";
         if (mysqli_query($connect, $query)) {
             echo '<script>
                     alert("สมัครสมาชิกเสร็จสิ้น")
-                    window.location.href = \'index.php\';
+                    window.location.href = \'login.php\';
                   </script>';
         } else {
             echo "error";

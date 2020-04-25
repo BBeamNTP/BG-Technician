@@ -26,7 +26,7 @@
             </button>
             <a href="index.php"><img src="img/logo.png" align="left" width="50px" height="auto" border="0"
                                      style="margin-right:20px"/></a>
-            <a href="index.php" class="navbar-brand" style="color: #FFFFFF">BG-Techinician</a>
+            <a href="index.php" class="navbar-brand" style="color: #FFFFFF">BG-Technician</a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -39,9 +39,9 @@
 <!--                    <li><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> ตั่งค่า </a></li>-->
                     <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> ออกจากระบบ </a></li>
                     <?php
-                } elseif(isset($_SESSION['email']) && ($_SESSION['status']=="techinician")){
+                } elseif(isset($_SESSION['email']) && ($_SESSION['status']=="technician")){
                     ?>
-                    <li><a href="profile-techinician.php"><span class="glyphicon glyphicon-user"></span> โปรไฟล์ </a></li>
+                    <li><a href="profile-technician.php"><span class="glyphicon glyphicon-user"></span> โปรไฟล์ </a></li>
 <!--                    <li><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> ตั่งค่า </a></li>-->
                     <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> ออกจากระบบ </a></li>
                     <?php
@@ -56,7 +56,7 @@
                     <li class="dropdown" ><a class="glyphicon glyphicon-user" data-toggle="dropdown" href="#"> สมัครสมาชิก <span class="caret"></span></a>
                         <ul class="dropdown-menu" >
                             <li><a href="register-member.php">สมัครสมาชิกทั่วไป</a></li>
-                            <li><a href="register-techinician.php">สมัครสมาชิกช่าง</a></li>
+                            <li><a href="register-technician.php">สมัครสมาชิกช่าง</a></li>
                         </ul>
                     </li>
 <!--                    <li><a href="register.php"><span class="glyphicon glyphicon-user"></span> สมัครสมาชิก </a></li>-->
