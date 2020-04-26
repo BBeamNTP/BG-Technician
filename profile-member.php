@@ -34,7 +34,7 @@ if (mysqli_num_rows($result) > 0) {
 
 <div class="container">
     <div class="container" align="center" style="margin-top: 2%">
-        <form action="update-profile.php?id=1" method="post" enctype="multipart/form-data">
+        <form action="update-profile.php?user_type=1&id=<?php echo $_SESSION['id']?>&status=<?php echo $_SESSION['status'] ?>" method="post" enctype="multipart/form-data">
             <h2>โปรไฟล์</h2>
             <div class="container" style="margin-top: 5%">
                 <div class="row">

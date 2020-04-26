@@ -1,6 +1,5 @@
 <?php
 require "connection.php";
-require "func_upload_img.php";
 
 $id = $_GET['id'];
 $email = $_POST['email'];
@@ -112,13 +111,11 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
         echo "--------------- 2 ";
 
         $detail = $_POST['detail'];
-//    $certificate1 = $_POST['certificate1'];
-//    $certificate2 = $_POST['certificate2'];
-//    $certificate3 = $_POST['certificate3'];
 
         echo " status : " . $status = "technician";
         $target_dir = "uploads/$id/$email/avatar/";
         $target_dir_exprience = "uploads/$id/$email/exprience/";
+        $target_dir_certificate = "uploads/$id/$email/certificate/";
 
         if (empty($email) || empty($password)) {
             echo '<script>alert("Both Fields are required")</script>';
@@ -186,12 +183,37 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
                 }
             }
 
-//        $query_cer = "INSERT INTO certificate(cer_id, path_certificate) VALUES('$certificate','$path_Certificate')";
-//        if (mysqli_query($connect, $query_cer)) {
-//            echo " finish ";
-//        } else {
-//            echo " error ";
-//        }
+            //----- อัฟโหลด รูปประสบการณ์ ----- ได้หลายรูป
+
+            if (!@mkdir($target_dir_certificate, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
+                echo "Folder Created.";
+            }
+            if (isset($_FILES['file_upload2'])) {
+                $arr_removeFiles2 = array();
+                if (isset($_POST['remove_file2'])) {
+                    $arr_removeFiles2 = $_POST['remove_file2'];
+                }
+                $totalFile2 = count($_FILES['file_upload2']['name']); // จำนวนไฟล์ทั้งหมด
+                for ($i = 0; $i < $totalFile2; $i++) {// วนลูปอัพโหลดไฟล์
+                    $fileName2 = $_FILES['file_upload2']['name'][$i];
+                    $fileUpload2 = $_FILES['file_upload2']['tmp_name'][$i];
+                    //        echo $tmp_name = $_FILES['tmp_name'][$i];
+                    if (!in_array($fileName, $arr_removeFiles)) { // อัพโหลดเฉพาะไฟล์ ที่ไม่ได้ลบ
+                        echo "Upload: " . $fileName . "<br>";
+                        copy($fileUpload2, $target_dir_certificate . $fileName2);
+                        $path_certificate= $target_dir_certificate . $fileName2;
+                        $query_ex = "INSERT INTO certificate(email, path_certificate)
+                                        VALUES('$email','$path_certificate')";
+                        if (mysqli_query($connect, $query_ex)) {
+                            echo "pass : " . $fileName . "<br>";
+                        } else {
+                            echo "error";
+                        }
+                    }
+                }
+            }
+
+
 
             // ปรพเภทงาน รับแบบ Array
             foreach ($_POST['type1'] AS $i => $text) {
@@ -214,99 +236,6 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
             } else {
                 echo "error";
             }
-
-
-            ///------------------------------------------------------------------------------------------------------------
-//        $target_dir = "uploads/img/$id/$email/Certificate/";
-//
-//        // รับค่าไฟล์อัปโหลดที่ส่งมาจากฟอร์ม
-//        $fileupload1 = $_FILES['fileToUpload1'];
-//// วนลูปทีละรายการ
-//        foreach ($fileupload1['tmp_name'] as $i => $tmp_name) {
-//            // ตรวจสอบว่ามีไฟล์ส่งมาหรือไม่
-//            if ($tmp_name != '') {
-//                // แสดงผลค่าที่ส่งมา
-//                echo $certificate1;
-//                echo $fileupload1['name'][$i] . '<br>';
-//                echo $tmp_name . '<br>';
-//                echo $fileupload1['type'][$i] . '<br>';
-//                if ($fileupload1['type'][$i] != "image/jpg" && $fileupload1['type'][$i] != "image/png" && $fileupload1['type'][$i] != "image/jpeg"
-//                    && $fileupload1['type'][$i] != "image/gif") {
-//                    echo " Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-//                }
-////        echo $fileupload1['type'][$i].'<br>';
-//                if ($fileupload1['size'][$i] > 5000000) {
-//                    echo " ขนาดรูปใหญ่เกินไป";
-//                }
-////        echo $fileupload1['size'][$i].'<br>';
-//                echo '-----------<br>';
-//                // สำเนาไฟล์ไปยังปลายทาง
-//
-//                if (!@mkdir($target_dir, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-////        echo "Folder Created.";
-//                }
-//                copy($tmp_name, $target_dir .$certificate1.".jpg");
-//            }
-//        }
-//
-//        $fileupload2 = $_FILES['fileToUpload2'];
-//// วนลูปทีละรายการ
-//        foreach ($fileupload2['tmp_name'] as $i => $tmp_name) {
-//            // ตรวจสอบว่ามีไฟล์ส่งมาหรือไม่
-//            if ($tmp_name != '') {
-//                // แสดงผลค่าที่ส่งมา
-//                echo $certificate2;
-//                echo $fileupload2['name'][$i] . '<br>';
-//                echo $tmp_name . '<br>';
-//                echo $fileupload2['type'][$i] . '<br>';
-//                if ($fileupload2['type'][$i] != "image/jpg" && $fileupload2['type'][$i] != "image/png" && $fileupload2['type'][$i] != "image/jpeg"
-//                    && $fileupload2['type'][$i] != "image/gif") {
-//                    echo " Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-//                }
-////        echo $fileupload2['type'][$i].'<br>';
-//                if ($fileupload2['size'][$i] > 5000000) {
-//                    echo " ขนาดรูปใหญ่เกินไป";
-//                }
-////        echo $fileupload2['size'][$i].'<br>';
-//                echo '-----------<br>';
-//                // สำเนาไฟล์ไปยังปลายทาง
-//
-//                if (!@mkdir($target_dir, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-////        echo "Folder Created.";
-//                }
-//                copy($tmp_name, $target_dir .$certificate2.".jpg");
-//            }
-//        }
-//
-//        $fileupload3 = $_FILES['fileToUpload3'];
-//// วนลูปทีละรายการ
-//        foreach ($fileupload3['tmp_name'] as $i => $tmp_name) {
-//            // ตรวจสอบว่ามีไฟล์ส่งมาหรือไม่
-//            if ($tmp_name != '') {
-//                // แสดงผลค่าที่ส่งมา
-//                echo $certificate3;
-//                echo $fileupload3['name'][$i] . '<br>';
-//                echo $tmp_name . '<br>';
-//                echo $fileupload3['type'][$i] . '<br>';
-//                if ($fileupload3['type'][$i] != "image/jpg" && $fileupload3['type'][$i] != "image/png" && $fileupload3['type'][$i] != "image/jpeg"
-//                    && $fileupload3['type'][$i] != "image/gif") {
-//                    echo " Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-//                }
-////        echo $fileupload3['type'][$i].'<br>';
-//                if ($fileupload3['size'][$i] > 5000000) {
-//                    echo " ขนาดรูปใหญ่เกินไป";
-//                }
-////        echo $fileupload3['size'][$i].'<br>';
-//                echo '-----------<br>';
-//                // สำเนาไฟล์ไปยังปลายทาง
-//
-//                if (!@mkdir($target_dir, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-////        echo "Folder Created.";
-//                }
-//                copy($tmp_name, $target_dir .$certificate3.".jpg");
-//            }
-//        }
-
 
         }
     } else {

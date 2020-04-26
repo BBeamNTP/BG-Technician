@@ -3,7 +3,7 @@ require 'header.php';
 require 'connection.php';
 if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
 
-}elseif ((isset($_SESSION['email']) && ($_SESSION['status'] == "technician"))) {
+} elseif ((isset($_SESSION['email']) && ($_SESSION['status'] == "technician"))) {
     $email = $_SESSION['email'];
     $query = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($connect, $query);
@@ -28,12 +28,39 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
             $address = $row['address'];
             $contact = $row['contact'];
             $detail = $row['detail'];
-            $status= $row['status'];
-            $avatar_path= $row['avatar_path'];
+            $status = $row['status'];
+            $avatar_path = $row['avatar_path'];
         }
     }
-}else{
-    echo "GET PROFILE ERROR !! ";
+} else {
+    $email = $_SESSION['email'];
+    $query = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($connect, $query);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+
+            // เปลี่ยน ข้อมูลใน session เวลา update ข้อมูล
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['firstname'] = $row['firstname'];
+            $_SESSION['lastname'] = $row['lastname'];
+            $_SESSION['sex'] = $row['sex'];
+            $_SESSION['address'] = $row['address'];
+            $_SESSION['contact'] = $row['contact'];
+            $_SESSION['detail'] = $row['detail'];
+            $_SESSION['status'] = $row['status'];
+            $_SESSION['avatar_path'] = $row['avatar_path'];
+
+            $id = $row['id'];
+            $firstname = $row['firstname'];
+            $lastname = $row['lastname'];
+            $sex = $row['sex'];
+            $address = $row['address'];
+            $contact = $row['contact'];
+            $detail = $row['detail'];
+            $status = $row['status'];
+            $avatar_path = $row['avatar_path'];
+        }
+    }
 }
 
 ?>
@@ -70,9 +97,11 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
         canvas {
             border: 1px solid red;
         }
+
         hr.style19 {
             border-top: 4px solid #000;
         }
+
         hr.style20 {
             background: url(https://image.ibb.co/gJm5Qv/striped.png);
             height: 5px;
@@ -83,11 +112,23 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
 <body>
 
 <div class="container">
+
     <div class="container" align="center" style="margin-top: 2%;">
-        <form class="form" id="myFrom" method="post" action="update-profile.php?id=2" role="form"
-              enctype="multipart/form-data">
+
+
             <h2>ข้อมูลส่วนตัวช่าง</h2>
-            <div class="container" style="margin-top: 5%">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2" style="margin-bottom: 20px">
+                <form method="post" action="index.php">
+                    <input type="submit" class="btn btn-primary" value="กลับสู่หน้าหลัก">
+                </form>
+            </div>
+        <form class="form" id="myFrom" method="post"
+              action="update-profile.php?user_type=2&id=<?php echo $id ?>&status=<?php echo $status ?>" role="form"
+              enctype="multipart/form-data">
+            <div class="container" style="margin-bottom: 5%">
+
                 <div class="row">
                     <div class="col-md-4">
                         <script type="text/javascript">
@@ -112,12 +153,13 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
 
                         <div class="form-group">
                             <input type="email" class="form-control" name="email" placeholder="อีเมล์" required
-                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<?php echo $email ?>" disabled>
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<?php echo $email ?>"
+                                   disabled>
                         </div>
-<!--                        <div class="form-group">-->
-<!--                            <input type="password" class="form-control" name="password" placeholder="รหัสผ่าน"-->
-<!--                                   required="true">-->
-<!--                        </div>-->
+                        <!--                        <div class="form-group">-->
+                        <!--                            <input type="password" class="form-control" name="password" placeholder="รหัสผ่าน"-->
+                        <!--                                   required="true">-->
+                        <!--                        </div>-->
                         <div class="form-group">
                             <input type="text" class="form-control" name="firstname" placeholder="ชื่อจริง"
                                    value="<?php echo $firstname ?>"
@@ -147,7 +189,8 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                                    required="true">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="detail" placeholder="รายละเอียด" ><?php echo $detail ?></textarea>
+                            <textarea class="form-control" rows="3" name="detail"
+                                      placeholder="รายละเอียด"><?php echo $detail ?></textarea>
                         </div>
 
                     </div>
@@ -170,7 +213,7 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
 
                         ?>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item" >
+                            <li class="list-group-item">
                                 ช่างไฟฟ้า
                                 <label class="switch ">
 
@@ -304,53 +347,20 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                 <label><h3>รูปประสบการณ์ทำงาน</h3></label>
                 <div class="container" align="center">
                     <table width="1080" border="0" align="center" style="margin-top: 3%">
-                        <!--                  <tr>-->
-                        <!--                    <td align="center">-->
-                        <!--                        <img id="blah1" src="img/1.png" alt="your image" width="200px" height="auto"/>-->
-                        <!--                        <script type="text/javascript">-->
-                        <!--                            function readURL1(input) {-->
-                        <!--                                if (input.files && input.files[0]) {-->
-                        <!--                                    var reader = new FileReader();-->
-                        <!---->
-                        <!--                                    reader.onload = function (e) {-->
-                        <!--                                        $('#blah1').attr('src', e.target.result);-->
-                        <!--                                    }-->
-                        <!---->
-                        <!--                                    reader.readAsDataURL(input.files[0]);-->
-                        <!--                                }-->
-                        <!--                            }-->
-                        <!--                        </script>-->
-                        <!--                        <div class="form-group">-->
-                        <!--                            <input type="text" class="form-control" name="certificate1" placeholder="หมายเลขใบรับรอง"-->
-                        <!--                                   required="true">-->
-                        <!--                        </div>-->
-                        <!--                        <input class="btn btn-warning" type='file' onchange="readURL1(this);" name="fileToUpload1[1]"-->
-                        <!--                               id="fileToUpload1[1]" accept="image/*" style="margin-bottom: 20px"/>-->
-                        <!--                    </td>-->
-
                         <td align="center">
 
                             <div class="row">
                                 <?php
-//                                $email = $_SESSION['email'];
+                                //                                $email = $_SESSION['email'];
                                 $query = "SELECT * FROM exprience WHERE email = '$email'";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_array($result)) {
                                     ?>
-                                    <img class="card-img-top" src="<?php echo $row['path_exprience'] ?>" alt="Card image cap" width="200px">
+                                    <img class="card-img-top" src="<?php echo $row['path_exprience'] ?>"
+                                         alt="Card image cap" width="200px">
 
-<!---->
-<!--                                    <div class="col-md-3" style="text-align: center; margin-bottom: 2%;" >-->
-<!--                                        <div class="card" style="width: auto;">-->
-<!--                                            <img class="card-img-top" src="--><?php //echo $row['path_exprience'] ?><!--" alt="Card image cap" width="200px">-->
-<!--                                            <div class="card-body">-->
-<!--                                                <h5 class="card-title">--><?php //echo $row['firstname']; echo "\n\n"; echo $row['lastname'];?><!--</h5>-->
-<!--                                                <a href="#" class="btn btn-primary">รายละเอียดช่าง</a>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
 
-                                            <?php
+                                    <?php
                                 }
                                 ?>
 
@@ -359,12 +369,6 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                             <hr class="style20">
 
                             <div style="margin:auto;width:80%;">
-                                <!--                            <h3> บันทึกข้อมูล</h3>-->
-                                <!--                            <form class="form" id="myFrom" method="post" action="show_data.php"  role="form" enctype="multipart/form-data">-->
-                                <!--                                <div class="form-group">-->
-                                <!--                                    <lable class="control-label">Name : </lable>-->
-                                <!--                                    <input type="text" autocomplete="off" class="form-control" name="name">-->
-                                <!--                                </div>-->
                                 <div class="form-group">
                                     <h4>รูปใหม่</h4>
                                     <div id="thumbnail" align="center"></div>
@@ -374,7 +378,46 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                                         Upload File
                                     </div>
                                 </div>
-                                <!--                                <button type="submit"  class="btn btn-primary">เพิ่มข้อมูล</button>-->
+                            </div>
+
+                            <hr class="style20">
+
+                            <label><h3>รูปใบรับรองวิชาชีพ</h3></label>
+                            <div class="container" align="center">
+                                <table width="1080" border="0" align="center" style="margin-top: 3%">
+                                    <td align="center">
+
+                                        <div class="row">
+                                            <?php
+                                            //                                $email = $_SESSION['email'];
+                                            $query = "SELECT * FROM certificate WHERE email = '$email'";
+                                            $result = mysqli_query($connect, $query);
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                ?>
+                                                <img class="card-img-top" src="<?php echo $row['path_certificate'] ?>"
+                                                     alt="Card image cap" width="200px">
+
+
+                                                <?php
+                                            }
+                                            ?>
+
+
+                                        </div>
+                                        <hr class="style20">
+
+                                        <div style="margin:auto;width:80%;">
+                                            <div class="form-group">
+                                                <h4>รูปใหม่</h4>
+                                                <div id="thumbnail2" align="center"></div>
+                                                <br>
+                                                <lable class="control-label">Picture :</lable>
+                                                <div id="upload" class="btn btn-info">
+                                                    Upload File
+                                                </div>
+                                            </div>
+                                        </div>
+
         </form>
         <br>
 
@@ -421,7 +464,6 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                         //     console.log("Not an Image");
                         continue;
                     }
-
                     var image = document.createElement("img");
                     var wrapImg = document.createElement("div");
                     var thumbnail = document.getElementById("thumbnail");
@@ -437,7 +479,6 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                             aImg.src = e.target.result;
                         };
                     }(image))
-
                     var ret = reader.readAsDataURL(file);
                     var canvas = document.createElement("canvas");
                     ctx = canvas.getContext("2d");
@@ -445,9 +486,7 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                         ctx.drawImage(image, 100, 100)
                     }
                 } // end for loop
-
             } // end showThumbnail
-
             // ส่วนจัดการ การลบรูปที่ไม่ต้องการอัพโหลด จากการกดที่
             // หรือคลิกที่รูปที่ต้องการลบ
 
@@ -477,64 +516,106 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
 
 
         });
+
+
+        $(function () {
+
+
+            $("#upload2").on("click", function (e) {
+                var lastFile = $(".file_upload2:last").length;
+                if (lastFile >= 0) {
+                    if (lastFile == 0 || $(".file_upload2:last").val() != "") {
+                        var objFile = $("<input>", {
+                            "class": "file_upload2",
+                            "type": "file",
+                            "multiple": "true",
+                            "name": "file_upload2[]",
+                            "style": "display:none",
+                            change: function (e) {
+                                var files = this.files
+                                showThumbnail2(files)
+                            }
+                        });
+                        $(this).before(objFile);
+                        $(".file_upload2:last").show().click().hide();
+                    } else {
+                        $(".file_upload2:last").show().click().hide();
+                    }
+                }
+                e.preventDefault();
+            });
+
+            function showThumbnail2(files) {
+
+                //    $("#thumbnail").html("");
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i]
+                    var fileName = file.name;
+                    var imageType = /image.*/
+                    if (!file.type.match(imageType)) {
+                        //     console.log("Not an Image");
+                        continue;
+                    }
+
+                    var image2 = document.createElement("img");
+                    var wrapImg2 = document.createElement("div");
+                    var thumbnail2 = document.getElementById("thumbnail2");
+                    wrapImg2.className = 'removepic';
+                    wrapImg2.setAttribute("data-file", fileName);
+                    image2.file = file;
+                    wrapImg2.appendChild(image2);
+                    thumbnail2.appendChild(wrapImg2);
+
+                    var reader = new FileReader();
+                    reader.onload = (function (aImg) {
+                        return function (e) {
+                            aImg.src = e.target.result;
+                        };
+                    }(image2))
+
+                    var ret = reader.readAsDataURL(file);
+                    var canvas = document.createElement("canvas");
+                    ctx = canvas.getContext("2d");
+                    image2.onload = function () {
+                        ctx.drawImage(image2, 100, 100)
+                    }
+                } // end for loop
+
+            } // end showThumbnail2
+
+            // ส่วนจัดการ การลบรูปที่ไม่ต้องการอัพโหลด จากการกดที่
+            // หรือคลิกที่รูปที่ต้องการลบ
+
+            $(document.body).on("click", "div.removepic", function () {
+                var removeFileName = $(this).data("file");
+                var files = $("input.file_upload2");
+                var filesLength = files.length;
+                for (var f = 0; f < filesLength; f++) {
+                    var fileLists = files[f].files;
+                    if (fileLists !== undefined) {
+                        for (var fl = 0; fl < fileLists.length; fl++) {
+                            if (fileLists[fl].name === removeFileName) {
+                                var removeImg = $("<input>", {
+                                    "type": "hidden",
+                                    "name": "remove_file2[]",
+                                    "value": removeFileName
+                                });
+                                $(files[f]).after(removeImg);
+                                break;
+                            }
+                        }
+                    }
+                    ;
+                }
+                $(this).remove();
+            });
+        });
     </script>
-
-
-    <!--                        <img id="blah2" src="img/1.png" alt="your image" width="200px" height="auto"/>-->
-    <!--                        <script type="text/javascript">-->
-    <!--                            function readURL2(input) {-->
-    <!--                                if (input.files && input.files[0]) {-->
-    <!--                                    var reader = new FileReader();-->
-    <!---->
-    <!--                                    reader.onload = function (e) {-->
-    <!--                                        $('#blah2').attr('src', e.target.result);-->
-    <!--                                    }-->
-    <!---->
-    <!--                                    reader.readAsDataURL(input.files[0]);-->
-    <!--                                }-->
-    <!--                            }-->
-    <!--                        </script>-->
-    <!--                        <div class="form-group">-->
-    <!--                            <input type="text" class="form-control" name="certificate2" placeholder="หมายเลขใบรับรอง"-->
-    <!--                                   required="true">-->
-    <!--                        </div>-->
-    <!--                        <input class="btn btn-warning" type='file' onchange="readURL2(this);" name="fileToUpload2[1]"-->
-    <!--                               id="fileToUpload2[1]" accept="image/*" style="margin-bottom: 20px"/>-->
     </td>
-
-
-    <!--                      <td align="center">-->
-    <!--                          <img id="blah3" src="img/1.png" alt="your image" width="200px" height="auto"/>-->
-    <!--                          <script type="text/javascript">-->
-    <!--                              function readURL3(input) {-->
-    <!--                                  if (input.files && input.files[0]) {-->
-    <!--                                      var reader = new FileReader();-->
-    <!---->
-    <!--                                      reader.onload = function (e) {-->
-    <!--                                          $('#blah3').attr('src', e.target.result);-->
-    <!--                                      }-->
-    <!---->
-    <!--                                      reader.readAsDataURL(input.files[0]);-->
-    <!--                                  }-->
-    <!--                              }-->
-    <!--                          </script>-->
-    <!--                          <div class="form-group">-->
-    <!--                              <input type="text" class="form-control" name="certificate3" placeholder="หมายเลขใบรับรอง"-->
-    <!--                                     required="true">-->
-    <!--                          </div>-->
-    <!--                          <input class="btn btn-warning" type='file' onchange="readURL3(this);" name="fileToUpload3[1]"-->
-    <!--                                 id="fileToUpload3[1]" accept="image/*" style="margin-bottom: 20px"/>-->
-    <!--                      </td>-->
-    <!---->
-    <!--                  </tr>-->
     <tr>
         <td>&nbsp;</td>
-        <td>
-
-
-        </td>
+        <td></td>
         <td>&nbsp;</td>
-
     </tr>
 
 

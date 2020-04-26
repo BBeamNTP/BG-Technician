@@ -59,7 +59,7 @@ require 'header.php';
                                    required="true">
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" name="contact" placeholder="เบอร์โทรศัพท์"
+                            <input type="number" class="form-control" name="contact" placeholder="เบอร์โทรศัพท์"
                                    required="true">
                         </div>
 <!--                        <div class="form-group">-->

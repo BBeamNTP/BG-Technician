@@ -34,16 +34,17 @@ if (empty($email) || empty($password)) {
                 }else if ($row['status'] =='technician'){
                     header("location:index.php");
 
+                }else if($row['status'] =='wait'){
+                    $status = $row['status'];
+                    $id = $row['id'];
+                    header("location:wait-status.php?id=$id&email=$email");
+
+                }else if($row['status'] =='wait-fix'){
+                    $status = $row['status'];
+                    $id = $row['id'];
+                    header("location:wait-status.php?id=$id&email=$email");
                 }else{
-                    echo "data : " . $_SESSION['id'] = $row['id'];
-                    echo "data : " . $_SESSION['firstname'] = $row['firstname'];
-                    echo "data : " . $_SESSION['lastname'] = $row['lastname'];
-                    echo "data : " . $_SESSION['sex'] = $row['sex'];
-                    echo "data : " . $_SESSION['address'] = $row['address'];
-                    echo "data : " . $_SESSION['contact'] = $row['contact'];
-                    echo "data : " . $_SESSION['detail'] = $row['detail'];
-                    echo "data : " . $_SESSION['status'] = $row['status'];
-                    echo "data : " . $_SESSION['avatar_path'] = $row['avatar_path'];
+                    header("location:index.php");
                 }
             }
         }

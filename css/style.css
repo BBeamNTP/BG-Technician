@@ -163,6 +163,24 @@ div.fakefile {
     border: 1px dashed red;
 }
 
+
+
+#thumbnail2, div.removepic {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#thumbnail2 img {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+#thumbnail2 div.removepic:hover {
+    display: inline-block;
+    border: 1px dashed red;
+}
+
 canvas {
     border: 1px solid red;
 }
@@ -306,6 +324,23 @@ input:checked + .slider:before {
     border: 1px dashed red;
 }
 
+#thumbnail2, div.removepic {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#thumbnail2 img {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+#thumbnail2 div.removepic:hover {
+    display: inline-block;
+    border: 1px dashed red;
+}
+
 canvas {
     border: 1px solid red;
 }
+

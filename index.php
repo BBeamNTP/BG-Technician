@@ -16,10 +16,10 @@ if($value==''){
     $sql = "select * from users WHERE status ='technician' limit {$start} , {$perpage} ";
 $result = mysqli_query($connect, $sql);
 }else{
-    $sql = "SELECT us.id, us.firstname, us.lastname, us.avatar_path
+    $sql = "SELECT us.id, us.firstname, us.lastname, us.avatar_path, us.star
 FROM users as us
 LEFT JOIN work as wk
-ON us.email = wk.email WHERE wk.work_name ='$value'limit {$start} , {$perpage}";
+ON us.email = wk.email WHERE wk.work_name ='$value'and us.status='technician' limit {$start} , {$perpage}";
     $result = mysqli_query($connect, $sql);
 
 }
@@ -29,6 +29,7 @@ $rowcount = mysqli_num_rows($result);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <style>
         html, body {
             height: 90%; /* ให้ html และ body สูงเต็มจอภาพไว้ก่อน */
@@ -56,7 +57,7 @@ $rowcount = mysqli_num_rows($result);
         <div class="col-md-2" style="margin-right: 5%;margin-top: -1%;">
             <h3 align="center">ประเภทช่าง</h3>
 
-            <ul class="nav nav-pills nav-stacked" style="margin-left: 10%">
+            <ul class="nav nav-pills nav-stacked" style="margin-left: 10%; ">
                 <li <?php if($id == ""){echo 'class="active"';} ?>><a href="index.php">ทั้งหมด</a></li>
                 <li <?php if($id == '1'){echo 'class="active"';} ?>><a href="index.php?id=1&value=Electrician" value="Electrician">ช่างไฟฟ้า</a></li>
                 <li <?php if($id == '2'){echo 'class="active"';} ?>><a href="index.php?id=2&value=Plumber" value="Plumber">ช่างประปา</a></li>
@@ -75,9 +76,23 @@ $rowcount = mysqli_num_rows($result);
 
     <div class="col-md-3" style="text-align: center; margin-bottom: 5%;" >
             <div class="card" style="width: auto;">
-                <img class="card-img-top" src="<?php echo $row['avatar_path']?>" alt="Card image cap" width="150px">
+                <img class="card-img-top" src="<?php echo $row['avatar_path']?>" alt="Card image cap" width="140px">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['firstname']; echo "\n\n"; echo $row['lastname'];?></h5>
+
+                    <div class="row" style="margin-bottom: 10px">
+                        <style>
+                            .checked {
+                                color: orange;
+                            }
+                        </style>
+                            <span class="fa fa-star <?php if ($row['star']>=1){echo "checked";} ?>"></span>
+                            <span class="fa fa-star <?php if ($row['star']>=2){echo "checked";} ?>"></span>
+                            <span class="fa fa-star <?php if ($row['star']>=3){echo "checked";} ?>"></span>
+                            <span class="fa fa-star <?php if ($row['star']>=4){echo "checked";} ?>"></span>
+                            <span class="fa fa-star <?php if ($row['star']>=5){echo "checked";} ?>"></span>
+
+                    </div>
                     <a href="profile-all.php?id=<?php echo $row['id'] ?>" class="btn btn-primary">รายละเอียดช่าง</a>
                 </div>
             </div>
@@ -90,10 +105,10 @@ if($value==''){
     $total_record = mysqli_num_rows($query2);
     $total_page = ceil($total_record / $perpage);
 }else{
-    $sql2 = "SELECT us.id, us.firstname, us.lastname, us.avatar_path
+    $sql2 = "SELECT us.id, us.firstname, us.lastname, us.avatar_path, us.star
 FROM users as us
 LEFT JOIN work as wk
-ON us.email = wk.email WHERE wk.work_name ='$value'";
+ON us.email = wk.email WHERE wk.work_name ='$value' and us.status='technician'";
 
     $query2 = mysqli_query($connect, $sql2);
     $total_record = mysqli_num_rows($query2);
