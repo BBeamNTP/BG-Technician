@@ -368,16 +368,131 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                             </div>
                             <hr class="style20">
 
-                            <div style="margin:auto;width:80%;">
-                                <div class="form-group">
-                                    <h4>รูปใหม่</h4>
-                                    <div id="thumbnail" align="center"></div>
-                                    <br>
-                                    <lable class="control-label">Picture :</lable>
-                                    <div id="upload" class="btn btn-info">
-                                        Upload File
-                                    </div>
-                                </div>
+                            <div class="container" align="center">
+                                <table width="1080" border="0" align="center" style="margin-top: 3%">
+                                    <td align="center">
+                                        <div style="margin:auto;width:80%;" align="center">
+                                            <div class="form-group">
+                                                <div id="thumbnail" align="center"></div>
+                                                <br>
+                                                <lable class="control-label">Picture :</lable>
+                                                <div id="upload" class="btn btn-info">
+                                                    Upload File
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                        </div>
+
+
+                                        <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+                                        <script type="text/javascript">
+                                            $(function () {
+
+
+                                                $("#upload").on("click", function (e) {
+                                                    var lastFile = $(".file_upload:last").length;
+                                                    if (lastFile >= 0) {
+                                                        if (lastFile == 0 || $(".file_upload:last").val() != "") {
+                                                            var objFile = $("<input>", {
+                                                                "class": "file_upload",
+                                                                "type": "file",
+                                                                "multiple": "true",
+                                                                "name": "file_upload[]",
+                                                                "style": "display:none",
+                                                                change: function (e) {
+                                                                    var files = this.files
+                                                                    showThumbnail(files)
+                                                                }
+                                                            });
+                                                            $(this).before(objFile);
+                                                            $(".file_upload:last").show().click().hide();
+                                                        } else {
+                                                            $(".file_upload:last").show().click().hide();
+                                                        }
+                                                    }
+                                                    e.preventDefault();
+                                                });
+
+                                                function showThumbnail(files) {
+
+                                                    //    $("#thumbnail").html("");
+                                                    for (var i = 0; i < files.length; i++) {
+                                                        var file = files[i]
+                                                        var fileName = file.name;
+                                                        var imageType = /image.*/
+                                                        if (!file.type.match(imageType)) {
+                                                            //     console.log("Not an Image");
+                                                            continue;
+                                                        }
+
+                                                        var image = document.createElement("img");
+                                                        var wrapImg = document.createElement("div");
+                                                        var thumbnail = document.getElementById("thumbnail");
+                                                        wrapImg.className = 'removepic';
+                                                        wrapImg.setAttribute("data-file", fileName);
+                                                        image.file = file;
+                                                        wrapImg.appendChild(image);
+                                                        thumbnail.appendChild(wrapImg);
+
+                                                        var reader = new FileReader();
+                                                        reader.onload = (function (aImg) {
+                                                            return function (e) {
+                                                                aImg.src = e.target.result;
+                                                            };
+                                                        }(image))
+
+                                                        var ret = reader.readAsDataURL(file);
+                                                        var canvas = document.createElement("canvas");
+                                                        ctx = canvas.getContext("2d");
+                                                        image.onload = function () {
+                                                            ctx.drawImage(image, 100, 100)
+                                                        }
+                                                    } // end for loop
+
+                                                } // end showThumbnail
+
+                                                // ส่วนจัดการ การลบรูปที่ไม่ต้องการอัพโหลด จากการกดที่
+                                                // หรือคลิกที่รูปที่ต้องการลบ
+
+                                                $(document.body).on("click", "div.removepic", function () {
+                                                    var removeFileName = $(this).data("file");
+                                                    var files = $("input.file_upload");
+                                                    var filesLength = files.length;
+                                                    for (var f = 0; f < filesLength; f++) {
+                                                        var fileLists = files[f].files;
+                                                        if (fileLists !== undefined) {
+                                                            for (var fl = 0; fl < fileLists.length; fl++) {
+                                                                if (fileLists[fl].name === removeFileName) {
+                                                                    var removeImg = $("<input>", {
+                                                                        "type": "hidden",
+                                                                        "name": "remove_file[]",
+                                                                        "value": removeFileName
+                                                                    });
+                                                                    $(files[f]).after(removeImg);
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        ;
+                                                    }
+                                                    $(this).remove();
+                                                });
+                                            });
+                                        </script>
+                                    </td>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+
+
+                                        </td>
+                                        <td>&nbsp;</td>
+
+                                    </tr>
+
+
+                                </table>
                             </div>
 
                             <hr class="style20">
@@ -406,211 +521,137 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                                         </div>
                                         <hr class="style20">
 
-                                        <div style="margin:auto;width:80%;">
-                                            <div class="form-group">
-                                                <h4>รูปใหม่</h4>
-                                                <div id="thumbnail2" align="center"></div>
-                                                <br>
-                                                <lable class="control-label">Picture :</lable>
-                                                <div id="upload" class="btn btn-info">
-                                                    Upload File
-                                                </div>
-                                            </div>
+                                        <label><h3>รูปใบรับรองวิชาชีพ</h3></label>
+                                        <div class="container" align="center">
+                                            <table width="1080" border="0" align="center" style="margin-top: 3%">
+                                                <td align="center">
+                                                    <div style="margin:auto;width:80%;" align="center">
+                                                        <div class="form-group">
+                                                            <div id="thumbnail2" align="center"></div>
+                                                            <br>
+                                                            <lable class="control-label">Picture :</lable>
+                                                            <div id="upload2" class="btn btn-info">
+                                                                Upload File
+                                                            </div>
+                                                        </div>
+                                                        <br>
+
+                                                    </div>
+
+
+                                                    <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+
+
+                                                            $("#upload2").on("click", function (e) {
+                                                                var lastFile = $(".file_upload2:last").length;
+                                                                if (lastFile >= 0) {
+                                                                    if (lastFile == 0 || $(".file_upload2:last").val() != "") {
+                                                                        var objFile = $("<input>", {
+                                                                            "class": "file_upload2",
+                                                                            "type": "file",
+                                                                            "multiple": "true",
+                                                                            "name": "file_upload2[]",
+                                                                            "style": "display:none",
+                                                                            change: function (e) {
+                                                                                var files = this.files
+                                                                                showThumbnail2(files)
+                                                                            }
+                                                                        });
+                                                                        $(this).before(objFile);
+                                                                        $(".file_upload2:last").show().click().hide();
+                                                                    } else {
+                                                                        $(".file_upload2:last").show().click().hide();
+                                                                    }
+                                                                }
+                                                                e.preventDefault();
+                                                            });
+
+                                                            function showThumbnail2(files) {
+
+                                                                //    $("#thumbnail").html("");
+                                                                for (var i = 0; i < files.length; i++) {
+                                                                    var file = files[i]
+                                                                    var fileName = file.name;
+                                                                    var imageType = /image.*/
+                                                                    if (!file.type.match(imageType)) {
+                                                                        //     console.log("Not an Image");
+                                                                        continue;
+                                                                    }
+
+                                                                    var image2 = document.createElement("img");
+                                                                    var wrapImg2 = document.createElement("div");
+                                                                    var thumbnail2 = document.getElementById("thumbnail2");
+                                                                    wrapImg2.className = 'removepic';
+                                                                    wrapImg2.setAttribute("data-file", fileName);
+                                                                    image2.file = file;
+                                                                    wrapImg2.appendChild(image2);
+                                                                    thumbnail2.appendChild(wrapImg2);
+
+                                                                    var reader = new FileReader();
+                                                                    reader.onload = (function (aImg) {
+                                                                        return function (e) {
+                                                                            aImg.src = e.target.result;
+                                                                        };
+                                                                    }(image2))
+
+                                                                    var ret = reader.readAsDataURL(file);
+                                                                    var canvas = document.createElement("canvas");
+                                                                    ctx = canvas.getContext("2d");
+                                                                    image2.onload = function () {
+                                                                        ctx.drawImage(image2, 100, 100)
+                                                                    }
+                                                                } // end for loop
+
+                                                            } // end showThumbnail2
+
+                                                            // ส่วนจัดการ การลบรูปที่ไม่ต้องการอัพโหลด จากการกดที่
+                                                            // หรือคลิกที่รูปที่ต้องการลบ
+
+                                                            $(document.body).on("click", "div.removepic", function () {
+                                                                var removeFileName = $(this).data("file");
+                                                                var files = $("input.file_upload2");
+                                                                var filesLength = files.length;
+                                                                for (var f = 0; f < filesLength; f++) {
+                                                                    var fileLists = files[f].files;
+                                                                    if (fileLists !== undefined) {
+                                                                        for (var fl = 0; fl < fileLists.length; fl++) {
+                                                                            if (fileLists[fl].name === removeFileName) {
+                                                                                var removeImg = $("<input>", {
+                                                                                    "type": "hidden",
+                                                                                    "name": "remove_file2[]",
+                                                                                    "value": removeFileName
+                                                                                });
+                                                                                $(files[f]).after(removeImg);
+                                                                                break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    ;
+                                                                }
+                                                                $(this).remove();
+                                                            });
+                                                        });
+                                                    </script>
+                                                </td>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>
+
+
+                                                    </td>
+                                                    <td>&nbsp;</td>
+
+                                                </tr>
+
+
+                                            </table>
                                         </div>
 
         </form>
         <br>
-
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-
-
-            $("#upload").on("click", function (e) {
-                var lastFile = $(".file_upload:last").length;
-                if (lastFile >= 0) {
-                    if (lastFile == 0 || $(".file_upload:last").val() != "") {
-                        var objFile = $("<input>", {
-                            "class": "file_upload",
-                            "type": "file",
-                            "multiple": "true",
-                            "name": "file_upload[]",
-                            "style": "display:none",
-                            change: function (e) {
-                                var files = this.files
-                                showThumbnail(files)
-                            }
-                        });
-                        $(this).before(objFile);
-                        $(".file_upload:last").show().click().hide();
-                    } else {
-                        $(".file_upload:last").show().click().hide();
-                    }
-                }
-                e.preventDefault();
-            });
-
-            function showThumbnail(files) {
-
-                //    $("#thumbnail").html("");
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i]
-                    var fileName = file.name;
-                    var imageType = /image.*/
-                    if (!file.type.match(imageType)) {
-                        //     console.log("Not an Image");
-                        continue;
-                    }
-                    var image = document.createElement("img");
-                    var wrapImg = document.createElement("div");
-                    var thumbnail = document.getElementById("thumbnail");
-                    wrapImg.className = 'removepic';
-                    wrapImg.setAttribute("data-file", fileName);
-                    image.file = file;
-                    wrapImg.appendChild(image);
-                    thumbnail.appendChild(wrapImg);
-
-                    var reader = new FileReader();
-                    reader.onload = (function (aImg) {
-                        return function (e) {
-                            aImg.src = e.target.result;
-                        };
-                    }(image))
-                    var ret = reader.readAsDataURL(file);
-                    var canvas = document.createElement("canvas");
-                    ctx = canvas.getContext("2d");
-                    image.onload = function () {
-                        ctx.drawImage(image, 100, 100)
-                    }
-                } // end for loop
-            } // end showThumbnail
-            // ส่วนจัดการ การลบรูปที่ไม่ต้องการอัพโหลด จากการกดที่
-            // หรือคลิกที่รูปที่ต้องการลบ
-
-            $(document.body).on("click", "div.removepic", function () {
-                var removeFileName = $(this).data("file");
-                var files = $("input.file_upload");
-                var filesLength = files.length;
-                for (var f = 0; f < filesLength; f++) {
-                    var fileLists = files[f].files;
-                    if (fileLists !== undefined) {
-                        for (var fl = 0; fl < fileLists.length; fl++) {
-                            if (fileLists[fl].name === removeFileName) {
-                                var removeImg = $("<input>", {
-                                    "type": "hidden",
-                                    "name": "remove_file[]",
-                                    "value": removeFileName
-                                });
-                                $(files[f]).after(removeImg);
-                                break;
-                            }
-                        }
-                    }
-                    ;
-                }
-                $(this).remove();
-            });
-
-
-        });
-
-
-        $(function () {
-
-
-            $("#upload2").on("click", function (e) {
-                var lastFile = $(".file_upload2:last").length;
-                if (lastFile >= 0) {
-                    if (lastFile == 0 || $(".file_upload2:last").val() != "") {
-                        var objFile = $("<input>", {
-                            "class": "file_upload2",
-                            "type": "file",
-                            "multiple": "true",
-                            "name": "file_upload2[]",
-                            "style": "display:none",
-                            change: function (e) {
-                                var files = this.files
-                                showThumbnail2(files)
-                            }
-                        });
-                        $(this).before(objFile);
-                        $(".file_upload2:last").show().click().hide();
-                    } else {
-                        $(".file_upload2:last").show().click().hide();
-                    }
-                }
-                e.preventDefault();
-            });
-
-            function showThumbnail2(files) {
-
-                //    $("#thumbnail").html("");
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i]
-                    var fileName = file.name;
-                    var imageType = /image.*/
-                    if (!file.type.match(imageType)) {
-                        //     console.log("Not an Image");
-                        continue;
-                    }
-
-                    var image2 = document.createElement("img");
-                    var wrapImg2 = document.createElement("div");
-                    var thumbnail2 = document.getElementById("thumbnail2");
-                    wrapImg2.className = 'removepic';
-                    wrapImg2.setAttribute("data-file", fileName);
-                    image2.file = file;
-                    wrapImg2.appendChild(image2);
-                    thumbnail2.appendChild(wrapImg2);
-
-                    var reader = new FileReader();
-                    reader.onload = (function (aImg) {
-                        return function (e) {
-                            aImg.src = e.target.result;
-                        };
-                    }(image2))
-
-                    var ret = reader.readAsDataURL(file);
-                    var canvas = document.createElement("canvas");
-                    ctx = canvas.getContext("2d");
-                    image2.onload = function () {
-                        ctx.drawImage(image2, 100, 100)
-                    }
-                } // end for loop
-
-            } // end showThumbnail2
-
-            // ส่วนจัดการ การลบรูปที่ไม่ต้องการอัพโหลด จากการกดที่
-            // หรือคลิกที่รูปที่ต้องการลบ
-
-            $(document.body).on("click", "div.removepic", function () {
-                var removeFileName = $(this).data("file");
-                var files = $("input.file_upload2");
-                var filesLength = files.length;
-                for (var f = 0; f < filesLength; f++) {
-                    var fileLists = files[f].files;
-                    if (fileLists !== undefined) {
-                        for (var fl = 0; fl < fileLists.length; fl++) {
-                            if (fileLists[fl].name === removeFileName) {
-                                var removeImg = $("<input>", {
-                                    "type": "hidden",
-                                    "name": "remove_file2[]",
-                                    "value": removeFileName
-                                });
-                                $(files[f]).after(removeImg);
-                                break;
-                            }
-                        }
-                    }
-                    ;
-                }
-                $(this).remove();
-            });
-        });
-    </script>
     </td>
     <tr>
         <td>&nbsp;</td>

@@ -6,6 +6,8 @@ if ((!isset($_SESSION['email']))) {
 }
 
 $id = $_GET['id'];
+$active = 0;
+@$active = $_GET['active'];
 $query = "SELECT * FROM users WHERE id = '$id'";
 $result = mysqli_query($connect, $query);
 if (mysqli_num_rows($result) > 0) {
@@ -24,6 +26,7 @@ if (mysqli_num_rows($result) > 0) {
         $star = $row['star'];
     }
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -191,17 +194,19 @@ if (mysqli_num_rows($result) > 0) {
                         <li class="active"><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
 
                     <?php } else {?>
-                    <li class="active"><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
+                    <li  class="<?php if($active == 0 ){echo "active";} ?>" ><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
                     <li><a data-toggle="tab" href="#menu1">ประเภทงานที่ทำ</a></li>
                     <li><a data-toggle="tab" href="#menu2">รูปประสบการณ์ทำงาน</a></li>
                     <li><a data-toggle="tab" href="#menu3">ใบรับรองอาวิชาชีพ</a></li>
-                    <li><a data-toggle="tab" href="#menu4">แสดงความคิดเห็น</a></li>
+                    <li class=" <?php if($active == 4 ){echo "active";} ?>"><a data-toggle="tab" href="#menu4">แสดงความคิดเห็น</a></li>
 
                     <?php } ?>
                 </ul>
 
                 <div class="tab-content" style="margin-top: 50px">
-                    <div id="home" class="tab-pane fade in active">
+
+
+                    <div id="home" class="tab-pane fade <?php if($active == 0 ){echo "in active";} ?>">
                         <div class="row">
                             <div class="col-md-6">
                                 <script type="text/javascript">
@@ -516,7 +521,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
                     </div>
-                    <div id="menu4" class="tab-pane fade" >
+                    <div id="menu4" class="tab-pane fade <?php if($active == 4 ){echo "in active";} ?>" >
 
                         <div class="detailBox">
                             <div class="titleBox">
@@ -530,7 +535,7 @@ if (mysqli_num_rows($result) > 0) {
                                 $sql2 = "SELECT cm.id, cm.technician_id, cm.user_id, cm.text ,cm.date, us.firstname, us.status, us.avatar_path, us.star
                                         FROM comment as cm
                                         LEFT JOIN users as us
-                                        ON cm.user_id = us.id WHERE cm.technician_id ='$id'";
+                                        ON cm.user_id = us.id WHERE cm.technician_id ='$id' ORDER BY date DESC";
                                 $query2 = mysqli_query($connect, $sql2);
                                 $rowcount = mysqli_num_rows($query2);
                                 while ($row = mysqli_fetch_array($query2)) {
@@ -595,12 +600,12 @@ if (mysqli_num_rows($result) > 0) {
 
 
                                 </ul>
-                                <form class="form-inline" role="form" action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']?>" method="post">
+                                <form class="form-inline" name="frm" role="form"  method="post" action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="text" placeholder="Your comments" />
+                                        <input class="form-control" type="text" name="text" placeholder="ข้อความของคุณ" />
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-default">Add</button>
+                                        <button class="btn btn-default" name="bt" value="ส่งข้อมูล" id="GGG">ส่ง</button>
                                     </div>
                                 </form>
                             </div>

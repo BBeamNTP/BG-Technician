@@ -202,16 +202,16 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
                         echo "Upload: " . $fileName . "<br>";
                         copy($fileUpload2, $target_dir_certificate . $fileName2);
                         $path_certificate= $target_dir_certificate . $fileName2;
-                        $query_ex = "INSERT INTO certificate(email, path_certificate)
+                        $query_cer = "INSERT INTO certificate(email, path_certificate)
                                         VALUES('$email','$path_certificate')";
-                        if (mysqli_query($connect, $query_ex)) {
+                        if (mysqli_query($connect, $query_cer)) {
                             echo "pass : " . $fileName . "<br>";
                         } else {
                             echo "error";
                         }
                     }
+                    }
                 }
-            }
 
 
 

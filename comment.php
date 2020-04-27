@@ -13,11 +13,12 @@ if (mysqli_query($connect, $query_comment)) {
 }else{
 //    echo "Add comment error !! ";
 }
+header("location:profile-all.php?id=$technician&active=4");
 
 ?>
 
-<script type="text/javascript">
-    alert("แสดงความคิดเห็นเรียบร้อย")
-    window.location.href = 'profile-all.php?id= <?php echo $technician ?>';
-</script>
+<!--<script type="text/javascript">-->
+<!--    alert("แสดงความคิดเห็นเรียบร้อย")-->
+<!--    window.location.href = 'profile-all.php?id= --><?php //echo $technician ?>//';
+<!--//</script>-->
 

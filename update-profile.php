@@ -55,14 +55,20 @@ if ($user_type == 1) { // user
 
 }
 else if ($user_type == 2) { // ช่าง
-    echo $detail = $_POST['detail'];
-    $target_dir = "uploads/$user_type/$email/avatar/";
-    $target_dir_exprience = "uploads/$user_type/$email/exprience/";
+
+    $detail = $_POST['detail'];
+
+    echo " status : " . $status = "technician";
+    $target_dir = "uploads/$id/$email/avatar/";
+    $target_dir_exprience = "uploads/$id/$email/exprience/";
+    $target_dir_certificate = "uploads/$id/$email/certificate/";
 
     //----- อัฟโหลด รูปโปรไฟล์----- ได้หลายรูป
     if (!@mkdir($target_dir, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
         echo "Folder Created.";
     }
+
+
 
     if ((@$_FILES['fileToUpload']['name'][0] == "")) {
         echo "NO FILE SELECT NEW AVATAR !!!!!!";
@@ -114,12 +120,10 @@ else if ($user_type == 2) { // ช่าง
             $fileName = $_FILES['file_upload']['name'][$i];
             $fileUpload = $_FILES['file_upload']['tmp_name'][$i];
             //        echo $tmp_name = $_FILES['tmp_name'][$i];
-
             if (!in_array($fileName, $arr_removeFiles)) { // อัพโหลดเฉพาะไฟล์ ที่ไม่ได้ลบ
                 echo "Upload: " . $fileName . "<br>";
                 copy($fileUpload, $target_dir_exprience . $fileName);
                 $path_exprience = $target_dir_exprience . $fileName;
-
                 $query_ex = "INSERT INTO exprience(email, path_exprience)
                                         VALUES('$email','$path_exprience')";
                 if (mysqli_query($connect, $query_ex)) {
@@ -132,12 +136,56 @@ else if ($user_type == 2) { // ช่าง
     } else {
         echo "no file ";
     }
+
     $query_del_ex = "DELETE FROM work WHERE email='$email'";
     if (mysqli_query($connect, $query_del_ex)) {
         echo "Del Finish ";
     } else {
         echo "Del error";
     }
+
+    //----- อัฟโหลด รูปประสบการณ์ ----- ได้หลายรูป
+
+    if (!@mkdir($target_dir_certificate, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
+        echo "Folder Created.";
+    }
+    if ((@$_FILES['file_upload2']['name'][0] == "")) {
+        echo "NO FILE SELECT NEW EXPREIENCE!!!!!!";
+
+    } else if (isset($_FILES['file_upload2'])) {
+
+        $query_del_cer = "DELETE FROM certificate WHERE email='$email'";
+        if (mysqli_query($connect, $query_del_cer)) {
+            echo "Del Finish ";
+        } else {
+            echo "Del error";
+        }
+        $arr_removeFiles = array();
+        if (isset($_POST['remove_file2'])) {
+            $arr_removeFiles = $_POST['remove_file2'];
+        }
+        $totalFile = count($_FILES['file_upload2']['name']); // จำนวนไฟล์ทั้งหมด
+        for ($i = 0; $i < $totalFile; $i++) {// วนลูปอัพโหลดไฟล์
+            $fileName2 = $_FILES['file_upload2']['name'][$i];
+            $fileUpload2 = $_FILES['file_upload2']['tmp_name'][$i];
+            //        echo $tmp_name = $_FILES['tmp_name'][$i];
+            if (!in_array($fileName, $arr_removeFiles)) { // อัพโหลดเฉพาะไฟล์ ที่ไม่ได้ลบ
+                echo "Upload: " . $fileName . "<br>";
+                copy($fileUpload2, $target_dir_certificate . $fileName2);
+                $path_certificate = $target_dir_certificate . $fileName2;
+                $query_cer = "INSERT INTO certificate(email, path_certificate)
+                                        VALUES('$email','$path_certificate')";
+                if (mysqli_query($connect, $query_cer)) {
+                    echo "pass : " . $fileName . "<br>";
+                } else {
+                    echo "error";
+                }
+            }
+        }
+    } else {
+        echo "no file ";
+    }
+
     foreach ($_POST['type1'] AS $i => $text) {
         echo "value of text[$i]='$text'<br />";
         $query = "INSERT INTO work(email, work_name)

@@ -71,20 +71,23 @@ require 'connection.php';
             <input class="btn btn-primary btn-lg" type="submit" name="submit" value="ยืนยันข้อมความ ถึงผู้สมัคร">
 
         </form>
-        <?php }else{?>
+        <?php }else{ ?>
         <form method="post" action="profile-technician.php">
             <?php if (isset($status) && $status == "wait-fix") {?>
-                <div class="form-group">
-                    <textarea class="form-control" rows="3" name="detail" placeholder="รายละเอียด" style="text-align: center" disabled><?php echo $text ?></textarea>
-                </div>
-                <input class="btn btn-primary btn-lg" type="submit" name="submit" value="ไปยังหน้าแก้ไขข้อมูล">
+            <div class="form-group">
+                <textarea class="form-control" rows="3" name="detail" placeholder="รายละเอียด"
+                          style="text-align: center" disabled><?php echo $text ?></textarea>
+            </div>
+            <input class="btn btn-primary btn-lg" type="submit" name="submit" value="ไปยังหน้าแก้ไขข้อมูล">
             <?php } else if (isset($status) && ($status == "fixed") || ($status == "wait")) {?>
-                <div class="form-group">
-                    <textarea class="form-control" rows="3" name="detail" placeholder="รายละเอียด" style="text-align: center" disabled><?php echo $text ?>ผู้ดูแลระบบกำลังเร่งตรวจสอบข้อมูลของท่าน ขออภัยในความล่าช้า</textarea>
-                </div>
-                <input class="btn btn-primary btn-lg" type="submit" name="submit" value="ไปยังหน้าแก้ไขข้อมูล" disabled>
-            <?php } else{
-                echo "Error : Wait-Status 67";
+            <div class="form-group">
+                <textarea class="form-control" rows="3" name="detail" placeholder="รายละเอียด"
+                          style="text-align: center" disabled><?php echo $text ?>ผู้ดูแลระบบกำลังเร่งตรวจสอบข้อมูลของท่าน ขออภัยในความล่าช้า</textarea>
+            </div>
+            <input class="btn btn-primary btn-lg" type="submit" name="submit" value="ไปยังหน้าแก้ไขข้อมูล" disabled>
+            <?php } else if (isset($status) && $status == "technicial"){
+            }else{
+                echo "กรุณาเข้าสู่ระบบใหม่อีกครั้ง";
             }
         } ?>
         </form>
