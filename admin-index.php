@@ -1,7 +1,13 @@
 <?php
 require 'header.php';
 require 'connection.php';
-@$str = $_POST['test'];
+if (!isset($_SESSION['email']) && $_SESSION['status'] != "admin") {?>
+    <script type="text/javascript">
+        // alert("เปลี่ยนแปลงข้อมูลเรียบร้อย")
+        window.location.href = 'login.php';
+    </script><?php
+
+}@$str = $_POST['test'];
 if ($str == 'fixed') {
     $query = "SELECT * FROM users WHERE status = 'fixed'";
     $result = mysqli_query($connect, $query);

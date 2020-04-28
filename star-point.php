@@ -1,7 +1,9 @@
 <?php
 session_start();
 require 'connection.php';
-
+if (!isset($_SESSION['email'])){
+    header('location: login.php');
+}
 echo $star = $_POST['whatever1'];
 echo '<br>';
 echo $tecinician_id = $_GET['id'];

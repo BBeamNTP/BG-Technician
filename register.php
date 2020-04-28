@@ -155,7 +155,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
 
             //----- อัฟโหลด รูปประสบการณ์ ----- ได้หลายรูป
             if (!@mkdir($target_dir_exprience, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-                echo "Folder Created.";
+//                echo "Folder Created.";
             }
             if (isset($_FILES['file_upload'])) {
                 $arr_removeFiles = array();
@@ -168,13 +168,13 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
                     $fileUpload = $_FILES['file_upload']['tmp_name'][$i];
                     //        echo $tmp_name = $_FILES['tmp_name'][$i];
                     if (!in_array($fileName, $arr_removeFiles)) { // อัพโหลดเฉพาะไฟล์ ที่ไม่ได้ลบ
-                        echo "Upload: " . $fileName . "<br>";
+//                        echo "Upload: " . $fileName . "<br>";
                         copy($fileUpload, $target_dir_exprience . $fileName);
                         $path_exprience = $target_dir_exprience . $fileName;
                         $query_ex = "INSERT INTO exprience(email, path_exprience)
                                         VALUES('$email','$path_exprience')";
                         if (mysqli_query($connect, $query_ex)) {
-                            echo "pass : " . $fileName . "<br>";
+//                            echo "pass : " . $fileName . "<br>";
                         } else {
                             echo "error";
                         }
@@ -204,7 +204,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
                         $query_cer = "INSERT INTO certificate(email, path_certificate)
                                         VALUES('$email','$path_certificate')";
                         if (mysqli_query($connect, $query_cer)) {
-                            echo "pass : " . $fileName . "<br>";
+//                            echo "pass : " . $fileName . "<br>";
                         } else {
                             echo "error";
                         }

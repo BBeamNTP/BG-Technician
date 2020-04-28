@@ -2,6 +2,9 @@
 require 'connection.php';
 session_start();
 $id = $_SESSION['id'];
+if (!isset($_SESSION['email'])){
+    header('location: login.php');
+}
 if (isset($_SESSION['email']) && $_GET['method'] =="add"){ // กรณี สมัครใหม่ status = wait จะยังไม่มีข้อความ
     $eq_name = $_POST['eq_name'];
     $price = $_POST['price'];

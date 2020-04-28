@@ -4,7 +4,9 @@ $technician = $_GET['id'];
 $user_id = $_GET['user_id'];
 $text = $_POST['text'];
 
-
+if (!isset($_SESSION['email'])){
+    header('location: login.php');
+}
 $query_comment = "INSERT INTO comment(technician_id, user_id, text)
                     VALUES('$technician', '$user_id', '$text')";
 

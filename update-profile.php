@@ -1,6 +1,9 @@
 <?php
 require "connection.php";
 session_start();
+if (!isset($_SESSION['email'])){
+    header('location: login.php');
+}
 $user_type = $_GET['user_type'];
 $id = $_GET['id'];
 $status = $_GET['status'];

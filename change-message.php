@@ -5,6 +5,11 @@
     $status = $_GET['status'];
     $text = $_POST['text'];
     $status2 = "";
+if (!isset($_SESSION['email']) && $_SESSION['status'] != "admin") {?>
+    <script type="text/javascript">
+        // alert("เปลี่ยนแปลงข้อมูลเรียบร้อย")
+        window.location.href = 'login.php';
+    </script><?php}
 
     //admin
     if (isset($status) && $status =='wait'){ // กรณี สมัครใหม่ status = wait จะยังไม่มีข้อความ

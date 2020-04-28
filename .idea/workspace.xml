@@ -7,11 +7,14 @@
       <change beforePath="$PROJECT_DIR$/admin-change-status.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-change-status.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin-index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/change-message.php" beforeDir="false" afterPath="$PROJECT_DIR$/change-message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/delete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login-submit.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-submit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-member.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-technician.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-technician.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/star-point.php" beforeDir="false" afterPath="$PROJECT_DIR$/star-point.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update-profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/update-profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wait-status.php" beforeDir="false" afterPath="$PROJECT_DIR$/wait-status.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +92,7 @@
       <workItem from="1587915906229" duration="28892000" />
       <workItem from="1587967254425" duration="28334000" />
       <workItem from="1588047655070" duration="132000" />
-      <workItem from="1588047801748" duration="34370000" />
+      <workItem from="1588047801748" duration="35693000" />
     </task>
     <servers />
   </component>

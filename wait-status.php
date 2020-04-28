@@ -1,7 +1,9 @@
 <?php
 require 'header.php';
 require 'connection.php';
-
+if (!isset($_SESSION['email'])){
+    header('location: login.php');
+}
     $id = $_GET['id'];
     $email = $_GET['email'];
 //    $status = $_GET['status'];
