@@ -15,10 +15,10 @@ if ($user_type == 1) { // user
     $target_dir = "uploads/$user_type/$email/avatar/";
     //----- อัฟโหลด รูปโปรไฟล์----- ได้หลายรูป
     if (!@mkdir($target_dir, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-        echo "Folder Created.";
+//        echo "Folder Created.";
     }
     if (($_FILES['fileToUpload']['name'][0] == "")) {
-        echo "NO FILE SELECT NEW !!!!!!";
+//        echo "NO FILE SELECT NEW !!!!!!";
         $path_avatar = $_SESSION['avatar_path'];
 
     } else if (isset($_FILES['fileToUpload'])) {
@@ -58,20 +58,20 @@ else if ($user_type == 2) { // ช่าง
 
     $detail = $_POST['detail'];
 
-    echo " status : " . $status = "technician";
+    $status = "technician";
     $target_dir = "uploads/$id/$email/avatar/";
     $target_dir_exprience = "uploads/$id/$email/exprience/";
     $target_dir_certificate = "uploads/$id/$email/certificate/";
 
     //----- อัฟโหลด รูปโปรไฟล์----- ได้หลายรูป
     if (!@mkdir($target_dir, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-        echo "Folder Created.";
+//        echo "Folder Created.";
     }
 
 
 
     if ((@$_FILES['fileToUpload']['name'][0] == "")) {
-        echo "NO FILE SELECT NEW AVATAR !!!!!!";
+//        echo "NO FILE SELECT NEW AVATAR !!!!!!";
         $path_avatar = $_SESSION['avatar_path'];
 
     } else if (isset($_FILES['fileToUpload'])) {
@@ -98,16 +98,16 @@ else if ($user_type == 2) { // ช่าง
 
     //----- อัฟโหลด รูปประสบการณ์ ----- ได้หลายรูป
     if (!@mkdir($target_dir_exprience, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-        echo "Folder Created.";
+//        echo "Folder Created.";
     }
     if ((@$_FILES['file_upload']['name'][0] == "")) {
-        echo "NO FILE SELECT NEW EXPREIENCE!!!!!!";
+//        echo "NO FILE SELECT NEW EXPREIENCE!!!!!!";
 
     } else if (isset($_FILES['file_upload'])) {
 
         $query_del_ex = "DELETE FROM exprience WHERE email='$email'";
         if (mysqli_query($connect, $query_del_ex)) {
-            echo "Del Finish ";
+//            echo "Del Finish ";
         } else {
             echo "Del error";
         }
@@ -127,7 +127,7 @@ else if ($user_type == 2) { // ช่าง
                 $query_ex = "INSERT INTO exprience(email, path_exprience)
                                         VALUES('$email','$path_exprience')";
                 if (mysqli_query($connect, $query_ex)) {
-                    echo "pass : " . $fileName . "<br>";
+//                    echo "pass : " . $fileName . "<br>";
                 } else {
                     echo "error";
                 }
@@ -139,7 +139,7 @@ else if ($user_type == 2) { // ช่าง
 
     $query_del_ex = "DELETE FROM career WHERE email='$email'";
     if (mysqli_query($connect, $query_del_ex)) {
-        echo "Del Finish ";
+//        echo "Del Finish ";
     } else {
         echo "Del error";
     }
@@ -147,16 +147,16 @@ else if ($user_type == 2) { // ช่าง
     //----- อัฟโหลด รูปใบรับรอง----- ได้หลายรูป
 
     if (!@mkdir($target_dir_certificate, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
-        echo "Folder Created.";
+//        echo "Folder Created.";
     }
     if ((@$_FILES['file_upload2']['name'][0] == "")) {
-        echo "NO FILE SELECT NEW EXPREIENCE!!!!!!";
+//        echo "NO FILE SELECT NEW EXPREIENCE!!!!!!";
 
     } else if (isset($_FILES['file_upload2'])) {
 
         $query_del_cer = "DELETE FROM certificate WHERE email='$email'";
         if (mysqli_query($connect, $query_del_cer)) {
-            echo "Del Finish ";
+//            echo "Del Finish ";
         } else {
             echo "Del error";
         }
@@ -176,7 +176,7 @@ else if ($user_type == 2) { // ช่าง
                 $query_cer = "INSERT INTO certificate(email, path_certificate)
                                         VALUES('$email','$path_certificate')";
                 if (mysqli_query($connect, $query_cer)) {
-                    echo "pass : " . $fileName . "<br>";
+//                    echo "pass : " . $fileName . "<br>";
                 } else {
                     echo "error";
                 }
@@ -200,7 +200,7 @@ else if ($user_type == 2) { // ช่าง
         $query = "update users set firstname='$firstname', lastname='$lastname', sex='$sex', address='$address', contact='$contact',status='fixed', avatar_path='$path_avatar', detail='$detail' where email='$email'";
         $query_del_messgae = "DELETE FROM message WHERE email='$email'";
         if (mysqli_query($connect, $query_del_messgae)) {
-            echo "Del Finish ";
+//            echo "Del Finish ";
         } else {
             echo "Del error";
         }
@@ -209,7 +209,7 @@ else if ($user_type == 2) { // ช่าง
         $query = "update users set firstname='$firstname', lastname='$lastname', sex='$sex', address='$address', contact='$contact', avatar_path='$path_avatar', detail='$detail' where email='$email'";
         $query_del_messgae = "DELETE FROM message WHERE email='$email'";
         if (mysqli_query($connect, $query_del_messgae)) {
-            echo "Del Finish ";
+//            echo "Del Finish ";
         } else {
             echo "Del error";
         }

@@ -3,16 +3,14 @@ require 'connection.php';
 session_start();
 $id = $_SESSION['id'];
 if (isset($_SESSION['email']) && $_GET['method'] =="add"){ // กรณี สมัครใหม่ status = wait จะยังไม่มีข้อความ
-    echo "--------------------------------1";
-    echo $eq_name = $_POST['eq_name'];
-    echo $price = $_POST['price'];
-    echo $amount = $_POST['amount'];
+    $eq_name = $_POST['eq_name'];
+    $price = $_POST['price'];
+    $amount = $_POST['amount'];
     $sum_price = $price*$amount;
     $query_message = "INSERT INTO equipment(user_id, item, price, amount, total_price)
                     VALUES('$id', '$eq_name', '$price','$amount','$sum_price')";
     if (mysqli_query($connect, $query_message)) {
         header('location:equipment-list.php');
-        echo "Add item pass !! ";
     }else{
         echo "error";
     }
@@ -31,9 +29,7 @@ if (isset($_SESSION['email']) && $_GET['method'] =="add"){ // กรณี ส�
     }
 
 }else if(isset($_SESSION['email']) && $_GET['method'] =="del-1"){
-    echo "--------------------------------3";
-
-    echo $item_id = $_GET['item_id']."<br>";
+    $item_id = $_GET['item_id']."<br>";
     $query = "DELETE FROM `equipment` WHERE user_id='$id' AND id='$item_id'";
     if (mysqli_query($connect, $query)) {
             header('location:equipment-list.php');
@@ -42,8 +38,6 @@ if (isset($_SESSION['email']) && $_GET['method'] =="add"){ // กรณี ส�
     }
 
 }else{
-    echo "--------------------------------4";
     header('location:login.php');
 }
-
 ?>

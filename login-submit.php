@@ -16,18 +16,16 @@ if (empty($email) || empty($password)) {
             if (password_verify($password, $row["password"])) {
                 //return true;
                 $_SESSION['email'] = $email;
-
-                echo "data : " . $_SESSION['id'] = $row['id'];
-                echo "data : " . $_SESSION['firstname'] = $row['firstname'];
-                echo "data : " . $_SESSION['lastname'] = $row['lastname'];
-                echo "data : " . $_SESSION['sex'] = $row['sex'];
-                echo "data : " . $_SESSION['address'] = $row['address'];
-                echo "data : " . $_SESSION['contact'] = $row['contact'];
-                echo "data : " . $_SESSION['detail'] = $row['detail'];
-                echo "data : " . $_SESSION['status'] = $row['status'];
-                echo "data : " . $_SESSION['avatar_path'] = $row['avatar_path'];
-
-                echo "เข้าสู่ระบบ เสร็จสิ้น ";
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['firstname'] = $row['firstname'];
+                $_SESSION['lastname'] = $row['lastname'];
+                $_SESSION['sex'] = $row['sex'];
+                $_SESSION['address'] = $row['address'];
+                $_SESSION['contact'] = $row['contact'];
+                $_SESSION['detail'] = $row['detail'];
+                $_SESSION['status'] = $row['status'];
+                $_SESSION['avatar_path'] = $row['avatar_path'];
+//                echo "เข้าสู่ระบบ เสร็จสิ้น ";
                 if ($row['status'] =='admin'){
                     header("location:admin-index.php");
 

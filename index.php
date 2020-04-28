@@ -21,7 +21,6 @@ FROM users as us
 LEFT JOIN career as cr
 ON us.email = cr.email WHERE cr.career_name ='$value'and us.status='technician' limit {$start} , {$perpage}";
     $result = mysqli_query($connect, $sql);
-
 }
 $rowcount = mysqli_num_rows($result);
 ?>
@@ -29,7 +28,6 @@ $rowcount = mysqli_num_rows($result);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <style>
         html, body {
             height: 90%; /* ให้ html และ body สูงเต็มจอภาพไว้ก่อน */

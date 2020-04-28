@@ -1,9 +1,9 @@
 <?php
     require 'connection.php';
-    echo $id = $_GET['id'];
-    echo $email = $_GET['email'];
-    echo $status = $_GET['status'];
-    echo $text = $_POST['text'];
+    $id = $_GET['id'];
+    $email = $_GET['email'];
+    $status = $_GET['status'];
+    $text = $_POST['text'];
     $status2 = "";
 
     //admin
@@ -11,9 +11,9 @@
         $query_message = "INSERT INTO message(user_id, email, text)
                     VALUES('$id', '$email', '$text')";
         if (mysqli_query($connect, $query_message)) {
-            echo "Add message pass !! ";
+//            echo "Add message pass !! ";
         }
-        echo "Status = WAIT: ".$status2 = "wait-fix";
+        $status2 = "wait-fix";
         $query = "update users set status ='$status2' where id='$id'";
         if (mysqli_query($connect, $query)) { ?>
             <script type="text/javascript">
@@ -29,7 +29,7 @@
         if (mysqli_query($connect, $query)) {
             echo "Add message pass !! ";
         }
-        echo "Status = WAIT-FIX : ".$status2 = "wait-fix";
+        $status2 = "wait-fix";
         $query = "update users set status ='$status2' where id='$id'";
         if (mysqli_query($connect, $query)) { ?>
             <script type="text/javascript">
@@ -48,7 +48,7 @@
         if (mysqli_query($connect, $query_message)) {
             echo "Add message pass !! ";
         }
-        echo "Status = FIXED : ".$status2 = "wait-fix";
+        $status2 = "wait-fix";
         $query = "update users set status ='$status2' where id='$id'";
         if (mysqli_query($connect, $query)) { ?>
             <script type="text/javascript">
@@ -59,9 +59,5 @@
             echo "error";
         }
     }else{
-
     }
-
-
-
 ?>

@@ -26,19 +26,16 @@ if ($str == 'fixed') {
     <link rel="stylesheet" href="css/style-admin.css" type="text/css">
     <style>
         @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
-
         .detailBox {
             width:100%;
             height: 55%;
             border:1px solid #bbb;
-
         }
         .titleBox label{
             color:#444;
             margin:0;
             display:inline-block;
         }
-
         .commentBox .form-group:first-child, .actionBox .form-group:first-child {
             width:80%;
         }

@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="538f7c6e-6ae1-4dde-91e7-5f468e61a7fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/add-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-change-status.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-change-status.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/change-message.php" beforeDir="false" afterPath="$PROJECT_DIR$/change-message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-submit.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-submit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/star-point.php" beforeDir="false" afterPath="$PROJECT_DIR$/star-point.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update-profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/update-profile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +89,7 @@
       <workItem from="1587915906229" duration="28892000" />
       <workItem from="1587967254425" duration="28334000" />
       <workItem from="1588047655070" duration="132000" />
-      <workItem from="1588047801748" duration="33818000" />
+      <workItem from="1588047801748" duration="34370000" />
     </task>
     <servers />
   </component>

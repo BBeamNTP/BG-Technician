@@ -19,12 +19,10 @@ $query_select = "SELECT * FROM star WHERE technician_id = '$tecinician_id'";
 $result_select = mysqli_query($connect, $query_select);
 if (mysqli_num_rows($result_select) > 0) {
     while ($row = mysqli_fetch_array($result_select)) {
-        echo $tecinician_id ;
-        echo " = ". $row['technician_id'];
-        echo "<br>";
-        echo $user_id;
-        echo " = ".$row['user_id'];
-        echo "<br>";
+        $tecinician_id ;
+        $row['technician_id'];
+        $user_id;
+        $row['user_id'];
         if (($tecinician_id == $row['technician_id']) && ($user_id == $row['user_id'])) {
             $query_update_star = "update star set point ='$star' WHERE technician_id = '$tecinician_id' and user_id= '$user_id'";
             $result_update_star = mysqli_query($connect, $query_update_star);
@@ -53,11 +51,8 @@ if (mysqli_num_rows($result_select3) > 0) {
         $count++;
     }
 }
-echo $total_point;
-echo "<br>";
-echo $count;
-echo "<br>";
-echo $sum = $total_point / $count;
+
+$sum = $total_point / $count;
 $query_update_users = "update users set star ='$sum' WHERE id = '$tecinician_id'";
 $result_update_users = mysqli_query($connect, $query_update_users);
 
