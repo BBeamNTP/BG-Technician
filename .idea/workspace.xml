@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="538f7c6e-6ae1-4dde-91e7-5f468e61a7fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/add-list.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/style-admin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/equipment-list.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/cart.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-all.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-all.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-technician.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-technician.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register-member.php" beforeDir="false" afterPath="$PROJECT_DIR$/register-member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register-technician.php" beforeDir="false" afterPath="$PROJECT_DIR$/register-technician.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/update-profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/update-profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/connection.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +81,7 @@
       <workItem from="1587915906229" duration="28892000" />
       <workItem from="1587967254425" duration="28334000" />
       <workItem from="1588047655070" duration="132000" />
-      <workItem from="1588047801748" duration="25439000" />
+      <workItem from="1588047801748" duration="33211000" />
     </task>
     <servers />
   </component>
@@ -126,11 +111,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588071000352" />
-    <state x="0" y="0" width="1920" height="1040" key="find.popup" timestamp="1588070791685">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1614" y="0" width="1600" height="860" key="find.popup" timestamp="1588105264974">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
-    <state x="-1600" y="0" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@-1600.0.1600.860" timestamp="1587986719431" />
-    <state x="0" y="0" width="1920" height="1040" key="find.popup/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588070791685" />
+    <state x="-1614" y="0" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@-1600.0.1600.860" timestamp="1588105264974" />
+    <state x="-1600" y="0" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588096595026" />
     <state x="-1418" y="50" key="new project wizard" timestamp="1587542912908">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
