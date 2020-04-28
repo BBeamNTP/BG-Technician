@@ -137,14 +137,14 @@ else if ($user_type == 2) { // ช่าง
         echo "no file ";
     }
 
-    $query_del_ex = "DELETE FROM work WHERE email='$email'";
+    $query_del_ex = "DELETE FROM career WHERE email='$email'";
     if (mysqli_query($connect, $query_del_ex)) {
         echo "Del Finish ";
     } else {
         echo "Del error";
     }
 
-    //----- อัฟโหลด รูปประสบการณ์ ----- ได้หลายรูป
+    //----- อัฟโหลด รูปใบรับรอง----- ได้หลายรูป
 
     if (!@mkdir($target_dir_certificate, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
         echo "Folder Created.";
@@ -188,7 +188,7 @@ else if ($user_type == 2) { // ช่าง
 
     foreach ($_POST['type1'] AS $i => $text) {
         echo "value of text[$i]='$text'<br />";
-        $query = "INSERT INTO work(email, work_name)
+        $query = "INSERT INTO career(email, career_name)
                             VALUES('$email','$text')";
         if (mysqli_query($connect, $query)) {
         } else {

@@ -32,7 +32,6 @@ if (mysqli_num_rows($result) > 0) {
         }
     }
 } else {
-    echo "--------------- 1 ";
     if ($id == 1) {
         $status = "user ";
 
@@ -72,21 +71,23 @@ if (mysqli_num_rows($result) > 0) {
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif") {
             echo " Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+
             $uploadOk = 0;
         }
-
 // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
+            $path = "img/1.png";
             echo " Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 //            echo " The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+                $path = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
             } else {
                 echo " Sorry, there was an error uploading your file.";
             }
         }
-        $path = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
         if (empty($email) || empty($password)) {
             echo '<script>alert("Both Fields are required")</script>';
@@ -108,8 +109,6 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
 
 
     } else if ($id == 2) {
-        echo "--------------- 2 ";
-
         $detail = $_POST['detail'];
 
         echo " status : " . $status = "technician";
@@ -143,7 +142,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
                         echo " ขนาดรูปใหญ่เกินไป";
                     }
                     //        echo $fileupload['size'][$i].'<br>';
-                    echo '-----------<br>';
+
                     // สำเนาไฟล์ไปยังปลายทาง
 
                     if (!@mkdir($target_dir, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
@@ -183,7 +182,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
                 }
             }
 
-            //----- อัฟโหลด รูปประสบการณ์ ----- ได้หลายรูป
+            //----- อัฟโหลด รูปใบรับรอง----- ได้หลายรูป
 
             if (!@mkdir($target_dir_certificate, 0, true)) { // เช็คว่ามีไฟล์หรือยัง
                 echo "Folder Created.";
@@ -218,7 +217,7 @@ VALUES('$email', '$password', '$firstname', '$lastname', '$sex', '$address', '$c
             // ปรพเภทงาน รับแบบ Array
             foreach ($_POST['type1'] AS $i => $text) {
 //            echo "value of text[$i]='$text'<br />";
-                $query = "INSERT INTO work(email, work_name)
+                $query = "INSERT INTO career(email, career_name)
                             VALUES('$email','$text')";
                 if (mysqli_query($connect, $query)) {
                 } else {

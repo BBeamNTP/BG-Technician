@@ -1,0 +1,72 @@
+body {
+    font-family: sans-serif;
+}
+/*
+ให้ element ที่มี class img-checker ถูกซ่อนไว้
+*/
+.img-checker {
+    display: none;
+}
+/*
+ให้ <img> ที่ตามหลัง element ที่มี class img-checker แสดงผลแบบจาง
+และใช้ cursor รูปมือเมื่อผู้ใช้เอาเมาส์ไปชี้
+*/
+.img-checker + img {
+    opacity: 0.5;
+    cursor: pointer;
+    width: 150px;
+}
+.color-table-orange{
+    color: #fbfffb;
+    background-color: #ff6d1a;
+}
+.color-table-yellow{
+    /*color: #fbfffb;*/
+    background-color: rgba(255, 164, 54, 0.51);
+}
+/*
+ให้ <img> ที่ตามหลัง element ที่มี class img-checker กลับมาแสดงผลแบบปกติ
+เมื่อ element ที่มี class img-checker มีสถานะเป็น checked
+*/
+.img-checker:checked + img {
+    opacity: 1.0;
+}
+.drop-area {
+    width: 100px;
+    height: 25px;
+    border: 1px solid #999;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#thumbnail, div.removepic {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#thumbnail img {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+#thumbnail div.removepic:hover {
+    display: inline-block;
+    border: 1px dashed red;
+}
+
+canvas {
+    border: 1px solid red;
+}
+
+hr.style19 {
+    border-top: 4px solid #000;
+}
+
+hr.style20 {
+    background: url(https://image.ibb.co/gJm5Qv/striped.png);
+    height: 5px;
+    border: 0;
+}
+

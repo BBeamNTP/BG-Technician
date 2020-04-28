@@ -18,8 +18,8 @@ $result = mysqli_query($connect, $sql);
 }else{
     $sql = "SELECT us.id, us.firstname, us.lastname, us.avatar_path, us.star
 FROM users as us
-LEFT JOIN work as wk
-ON us.email = wk.email WHERE wk.work_name ='$value'and us.status='technician' limit {$start} , {$perpage}";
+LEFT JOIN career as cr
+ON us.email = cr.email WHERE cr.career_name ='$value'and us.status='technician' limit {$start} , {$perpage}";
     $result = mysqli_query($connect, $sql);
 
 }
@@ -52,9 +52,9 @@ $rowcount = mysqli_num_rows($result);
 </head>
 <body>
 
-<div  class="col-md-12 wrapper"  style=" margin-top: 15px;">
+<div  class="col-md-12 wrapper" >
     <div class="row wrapper" >
-        <div class="col-md-2" style="margin-right: 5%;margin-top: -1%;">
+        <div class="col-md-2" style="margin-right: 5%;">
             <h3 align="center">ประเภทช่าง</h3>
 
             <ul class="nav nav-pills nav-stacked" style="margin-left: 10%; ">
@@ -67,16 +67,25 @@ $rowcount = mysqli_num_rows($result);
                 <li <?php if($id == '6'){echo 'class="active"';} ?>><a href="index.php?id=6&value=Carpenters" value="Carpenters">ช่างไม้</a></li>
                 <li <?php if($id == '7'){echo 'class="active"';} ?>><a href="index.php?id=7&value=Roof-technician" value="Roof-technician">ช่างหลังคา</a></li>
                 <li <?php if($id == '8'){echo 'class="active"';} ?>><a href="index.php?id=8&value=Electronic-technician" value="Electronic-technician">ช่างอิเล็กทรอนิกส์</a></li>
+                <br>
+                <form action="equipment-list.php" target ="_blank" >
+                    <input type="image" src="img/calculate.jpg" width="150px" height="auto" align="center" name="button"
+                           id="button" value="Print" >
+                </form>
+                <form action="file/contract.pdf" target ="_blank" >
+                    <input type="image" src="img/print.jpg" width="150px" height="auto" align="center" name="button"
+                           id="button" value="Print" >
+                </form>
             </ul>
         </div>
         <?php if ($rowcount == 0) { ?>
-        <img class="card-img-top" src="img/no_camera-512.png" alt="Card image cap" width="400px" style="margin-left: 15%; margin-top: 5% ; margin-bottom: 5%">
+        <img class="card-img-top" src="img/no_camera-512.png" alt="Card image cap" width="300px" style="margin-left: 15%;">
         <?php } ?>
 <?php while ($row = mysqli_fetch_array($result)) { ?>
 
-    <div class="col-md-3" style="text-align: center; margin-bottom: 5%;" >
+    <div class="col-md-3" style="text-align: center; margin-top:2%;" >
             <div class="card" style="width: auto;">
-                <img class="card-img-top" src="<?php echo $row['avatar_path']?>" alt="Card image cap" width="140px">
+                <img class="card-img-top" src="<?php echo $row['avatar_path']?>" alt="Card image cap" width="150px">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['firstname']; echo "\n\n"; echo $row['lastname'];?></h5>
 
@@ -107,8 +116,8 @@ if($value==''){
 }else{
     $sql2 = "SELECT us.id, us.firstname, us.lastname, us.avatar_path, us.star
 FROM users as us
-LEFT JOIN work as wk
-ON us.email = wk.email WHERE wk.work_name ='$value' and us.status='technician'";
+LEFT JOIN career as cr
+ON us.email = cr.email WHERE cr.career_name ='$value' and us.status='technician'";
 
     $query2 = mysqli_query($connect, $sql2);
     $total_record = mysqli_num_rows($query2);
@@ -122,7 +131,7 @@ ON us.email = wk.email WHERE wk.work_name ='$value' and us.status='technician'";
             <nav style="margin-left: 18%">
                 <ul class="pagination">
                     <li>
-                        <a href="index.php?page=1&id=<?php echo $id?>&value=<?php echo $value ?>" aria-label="Previous">
+                        <a href="index.php?page=1&id=<?php echo $id?>&value=<?php echo $value ?>" aria-label="Previous" <?php if($total_page <1){echo "hidden";}?>>
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -130,7 +139,7 @@ ON us.email = wk.email WHERE wk.work_name ='$value' and us.status='technician'";
                         <li><a href="index.php?page=<?php echo $i; ?>&id=<?php echo $id?>&value=<?php echo $value ?>"><?php echo $i; ?></a></li>
                     <?php } ?>
                     <li>
-                        <a href="index.php?page=<?php echo $total_page;?>&id=<?php echo $id?>&value=<?php echo $value ?>" aria-label="Next">
+                        <a href="index.php?page=<?php echo $total_page;?>&id=<?php echo $id?>&value=<?php echo $value ?>" aria-label="Next" <?php if($total_page <1){echo "hidden";}?>>
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

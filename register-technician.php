@@ -15,6 +15,8 @@ require 'header.php';
         <form class="form" id="myFrom" method="post" action="register.php?id=2" role="form"
               enctype="multipart/form-data">
             <h2>สมัครสมาชิกช่างผู้ให้บริการ</h2>
+            <hr class="style20">
+
             <div class="container" style="margin-top: 5%">
                 <div class="row">
                     <div class="col-md-4">
@@ -154,7 +156,9 @@ require 'header.php';
                 </div>
 
             </div>
+            <hr class="style20">
             <label><h3>รูปประสบการณ์ทำงาน</h3></label>
+            <hr class="style20">
             <div class="container" align="center">
                 <table width="1080" border="0" align="center" style="margin-top: 3%">
                     <td align="center">
@@ -281,9 +285,9 @@ require 'header.php';
 
                 </table>
             </div>
-
-
+            <hr class="style20">
             <label><h3>รูปใบรับรองวิชาชีพ</h3></label>
+            <hr class="style20">
             <div class="container" align="center">
                 <table width="1080" border="0" align="center" style="margin-top: 3%">
                     <td align="center">

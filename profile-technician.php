@@ -67,47 +67,6 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-
-        .drop-area {
-            width: 100px;
-            height: 25px;
-            border: 1px solid #999;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        #thumbnail, div.removepic {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        #thumbnail img {
-            width: 100px;
-            height: 100px;
-            margin: 5px;
-        }
-
-        #thumbnail div.removepic:hover {
-            display: inline-block;
-            border: 1px dashed red;
-        }
-
-        canvas {
-            border: 1px solid red;
-        }
-
-        hr.style19 {
-            border-top: 4px solid #000;
-        }
-
-        hr.style20 {
-            background: url(https://image.ibb.co/gJm5Qv/striped.png);
-            height: 5px;
-            border: 0;
-        }
-    </style>
 </head>
 <body>
 
@@ -199,13 +158,13 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                     <div class="card col-md-4">
                         <!-- Default panel contents -->
                         <?php
-                        $query = "SELECT * FROM work WHERE email = '$email'";
+                        $query = "SELECT * FROM career WHERE email = '$email'";
                         $result = mysqli_query($connect, $query);
                         $stack = array();
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
                                 //        $_SESSION['id'] = $row['id'];
-                                $type = $row['work_name'];
+                                $type = $row['career_name'];
                                 array_push($stack, $type);
 
                             }

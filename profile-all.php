@@ -107,7 +107,6 @@ if (mysqli_num_rows($result) > 0) {
 </head>
 <body>
 
-
 <div class="container">
     <div class="container" align="center" style="margin-top: 5px;">
         <h2>ข้อมูลส่วนตัวช่าง</h2><br>
@@ -192,7 +191,6 @@ if (mysqli_num_rows($result) > 0) {
                 <ul class="nav nav-tabs">
                     <?php if ($status == "user"){ ?>
                         <li class="active"><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
-
                     <?php } else {?>
                     <li  class="<?php if($active == 0 ){echo "active";} ?>" ><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
                     <li><a data-toggle="tab" href="#menu1">ประเภทงานที่ทำ</a></li>
@@ -202,10 +200,7 @@ if (mysqli_num_rows($result) > 0) {
 
                     <?php } ?>
                 </ul>
-
                 <div class="tab-content" style="margin-top: 50px">
-
-
                     <div id="home" class="tab-pane fade <?php if($active == 0 ){echo "in active";} ?>">
                         <div class="row">
                             <div class="col-md-6">
@@ -217,7 +212,6 @@ if (mysqli_num_rows($result) > 0) {
                                             reader.onload = function (e) {
                                                 $('#blah').attr('src', e.target.result);
                                             }
-
                                             reader.readAsDataURL(input.files[0]);
                                         }
                                     }
@@ -317,13 +311,13 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="card" style="margin-top: 20px">
                             <!-- Default panel contents -->
                             <?php
-                            $query = "SELECT * FROM work WHERE email = '$email'";
+                            $query = "SELECT * FROM career WHERE email = '$email'";
                             $result = mysqli_query($connect, $query);
                             $stack = array();
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_array($result)) {
                                     //        $_SESSION['id'] = $row['id'];
-                                    $type = $row['work_name'];
+                                    $type = $row['career_name'];
                                     array_push($stack, $type);
 
                                 }

@@ -8,11 +8,11 @@ $avatar = "img/3.png";
 <head>
 </head>
 <body>
-    <div class="container" style="text-align: center">
+    <div class="container" style="text-align: center; padding-top: 5%" >
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
+                <div class="panel panel-primary" style="border: #444444">
+                    <div class="panel-heading " style="background-color: #ff8000">
                         <h3>เข้าสู่ระบบ</h3>
                     </div>
                     <div class="panel-body">
@@ -26,11 +26,11 @@ $avatar = "img/3.png";
                                 <input type="password" class="form-control" name="password" placeholder="รหัสผ่าน (อย่างน้อย 6 ตัว)" pattern=".{6,}" >
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="เข้าสู่ระบบ" class="btn btn-primary">
+                                <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success">
                             </div>
                         </form>
                     </div>
-                    <div class="panel-footer">ยังไม่ได้เป็นสมาชิกใช่ไหม ? <a href="register-member.php">สมัครสมาชิกทั่วไป</a> || <a href="register-technician.php">สมัครสมาชิกสำหรับช่าง</a></div>
+                    <div class="panel-footer" style="background-color: rgba(255,128,0,0.45)">ยังไม่ได้เป็นสมาชิกใช่ไหม ? <a href="register-member.php">สมัครสมาชิกทั่วไป</a> || <a href="register-technician.php">สมัครสมาชิกสำหรับช่าง</a></div>
                 </div>
             </div>
         </div>
