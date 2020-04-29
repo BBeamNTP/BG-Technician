@@ -1,13 +1,13 @@
 <?php
 session_start();
 require 'connection.php';
-echo $active = $_GET['active'];
-echo "<br>";
-echo $user_id = $_GET['user_id'];
-echo "<br>";
-echo $you_id = $_GET['id'];
-echo "<br>";
-echo $me_id = $_SESSION['id'];
+$active = $_GET['active'];
+//echo "<br>";
+ $user_id = $_GET['user_id'];
+//echo "<br>";
+$you_id = $_GET['id'];
+//echo "<br>";
+$me_id = $_SESSION['id'];
 
 $text = $_POST['text'];
 if (!isset($_SESSION['email'])){
