@@ -6,7 +6,7 @@ if ((!isset($_SESSION['email']))) {
 }
 
 $id = $_GET['id'];
-$active = 0;
+$active = "home";
 @$active = $_GET['active'];
 $query = "SELECT * FROM users WHERE id = '$id'";
 $result = mysqli_query($connect, $query);
@@ -36,73 +36,88 @@ if (mysqli_num_rows($result) > 0) {
         @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 
         .detailBox {
-            width:90%;
+            width: 90%;
             height: 55%;
-            border:1px solid #bbb;
-            margin:50px;
+            border: 1px solid #bbb;
+            margin: 50px;
         }
+
         .titleBox {
-            background-color:#fdfdfd;
-            padding:10px;
+            background-color: #fdfdfd;
+            padding: 10px;
         }
-        .titleBox label{
-            color:#444;
-            margin:0;
-            display:inline-block;
+
+        .titleBox label {
+            color: #444;
+            margin: 0;
+            display: inline-block;
         }
 
         .commentBox {
-            padding:10px;
-            border-top:1px dotted #bbb;
+            padding: 10px;
+            border-top: 1px dotted #bbb;
         }
+
         .commentBox .form-group:first-child, .actionBox .form-group:first-child {
-            width:80%;
+            width: 80%;
         }
+
         .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-            width:18%;
+            width: 18%;
         }
+
         .actionBox .form-group * {
-            width:100%;
+            width: 100%;
         }
+
         .taskDescription {
-            margin-top:5px ;
+            margin-top: 5px;
         }
+
         .commentList {
-            padding:0;
-            list-style:none;
-            max-height:80%;
+            padding: 0;
+            list-style: none;
+            max-height: 80%;
             max-width: 100%;
-            overflow:auto;
+            overflow: auto;
         }
+
         .commentList li {
-            margin:0;
-            margin-top:10px;
+            margin: 0;
+            margin-top: 10px;
         }
+
         .commentList li > div {
-            display:table-cell;
+            display: table-cell;
         }
+
         .commenterImage {
-            width:30px;
-            margin-right:5px;
-            height:100%;
-            float:left;
+            width: 30px;
+            margin-right: 5px;
+            height: 100%;
+            float: left;
         }
+
         .commenterImage img {
-            width:100%;
-            border-radius:50%;
+            width: 100%;
+            border-radius: 50%;
         }
+
         .commentText p {
-            margin:0;
+            margin: 0;
         }
+
         .sub-text {
-            color:#aaa;
-            font-family:verdana;
-            font-size:11px;
+            color: #aaa;
+            font-family: verdana;
+            font-size: 11px;
         }
+
         .actionBox {
-            border-top:1px dotted #bbb;
-            padding:10px;
+            border-top: 1px dotted #bbb;
+            padding: 10px;
         }
+
     </style>
 </head>
 <body>
@@ -114,39 +129,41 @@ if (mysqli_num_rows($result) > 0) {
 
             <?php if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) { ?>
                 <div class="col-md-3" style="margin-top: 8px">
-<!--                    <form method="get" action="index.php">-->
-                        <!-- Material unchecked disabled -->
-                        <li>สถานะตรวจสอบ ไม่ผ่าน/ผ่าน
-                            <label class="switch">
-                                    <input type="checkbox" class="primary" name="type1" id="type1" value="technician"
-                                           onclick="window.location='admin-change-status.php?id=<?php echo $id ?>&status=<?php echo $status ?>'"
-                                        <?php
-                                        if ($status == "technician") {
-                                            echo "checked";
-                                        }else if ($status == "user"){
-                                            echo "disabled";
-                                        }else{
-                                            echo "error";
-                                        }
-                                        ?>>
-                                <span class="slider round"></span>
-                            </label>
-                        </li>
+                    <!--                    <form method="get" action="index.php">-->
+                    <!-- Material unchecked disabled -->
+                    <li>สถานะตรวจสอบ ไม่ผ่าน/ผ่าน
+                        <label class="switch">
+                            <input type="checkbox" class="primary" name="type1" id="type1" value="technician"
+                                   onclick="window.location='admin-change-status.php?id=<?php echo $id ?>&status=<?php echo $status ?>'"
+                                <?php
+                                if ($status == "technician") {
+                                    echo "checked";
+                                } else if ($status == "user") {
+                                    echo "disabled";
+                                } else {
+                                    echo "error";
+                                }
+                                ?>>
+                            <span class="slider round"></span>
+                        </label>
+                    </li>
 
-<!--                    </form>-->
+                    <!--                    </form>-->
                 </div>
 
                 <div class="col-md-5"></div>
-                <div class="col-md-2" >
-                    <?php if (isset($status) && $status == "wait") {?>
-                        <form method="post" action="wait-status.php?id=<?php echo $id ?>&email=<?php echo $email ?>&status=<?php echo $status ?>">
+                <div class="col-md-2">
+                    <?php if (isset($status) && $status == "wait") { ?>
+                        <form method="post"
+                              action="wait-status.php?id=<?php echo $id ?>&email=<?php echo $email ?>&status=<?php echo $status ?>">
                             <input type="submit" class="btn btn-primary" value="แจ้งแก้ไข">
-                    </form>
-                    <?php }else if (isset($status) && (($status == "fixed") || ($status == "wait-fix"))) {?>
-                        <form method="post" action="wait-status.php?id=<?php echo $id ?>&email=<?php echo $email ?>&status=<?php echo $status ?>">
+                        </form>
+                    <?php } else if (isset($status) && (($status == "fixed") || ($status == "wait-fix"))) { ?>
+                        <form method="post"
+                              action="wait-status.php?id=<?php echo $id ?>&email=<?php echo $email ?>&status=<?php echo $status ?>">
                             <input type="submit" class="btn btn-primary" value="แจ้งแก้ไข อีกครั้ง">
                         </form>
-                    <?php }else{ ?>
+                    <?php } else { ?>
                         <input type="submit" class="btn btn-primary" value="แจ้งแก้ไข อีกครั้ง" disabled>
 
                     <?php } ?>
@@ -189,19 +206,42 @@ if (mysqli_num_rows($result) > 0) {
         <div class="container" style="margin-top: -3%;">
             <div class="container">
                 <ul class="nav nav-tabs">
-                    <?php if ($status == "user"){ ?>
+                    <?php if ($status == "user") { ?>
                         <li class="active"><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
-                    <?php } else {?>
-                    <li  class="<?php if($active == 0 ){echo "active";} ?>" ><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
-                    <li><a data-toggle="tab" href="#menu1">ประเภทงานที่ทำ</a></li>
-                    <li><a data-toggle="tab" href="#menu2">รูปประสบการณ์ทำงาน</a></li>
-                    <li><a data-toggle="tab" href="#menu3">ใบรับรองอาวิชาชีพ</a></li>
-                    <li class=" <?php if($active == 4 ){echo "active";} ?>"><a data-toggle="tab" href="#menu4">แสดงความคิดเห็น</a></li>
+                    <?php } else { ?>
+                        <!--                    -------------------------------------------------------------------------------------------ข้อมูลส่วนตัวช่าง------------------------------->
+
+                        <li class="<?php if (($active == "home") || ($active == "")) {
+                            echo "active";
+                        } ?>"><a data-toggle="tab" href="#home">ข้อมูลส่วนตัวช่าง</a></li>
+                        <!--                    -------------------------------------------------------------------------------------------ประเภทงานที่ทำ------------------------------->
+
+                        <li><a data-toggle="tab" href="#menu1">ประเภทงานที่ทำ</a></li>
+                        <!--                    -------------------------------------------------------------------------------------------รูปประสบการณ์ทำงาน------------------------------->
+
+                        <li><a data-toggle="tab" href="#menu2">รูปประสบการณ์ทำงาน</a></li>
+                        <!--                    -------------------------------------------------------------------------------------------ใบรับรองอาวิชาชีพ------------------------------->
+
+                        <li><a data-toggle="tab" href="#menu3">ใบรับรองอาวิชาชีพ</a></li>
+                        <!--                    -------------------------------------------------------------------------------------------แสดงความคิดเห็น------------------------------->
+
+                        <li class=" <?php if ($active == "comment") {
+                            echo "active";
+                        } ?>"><a data-toggle="tab" href="#menu4">แสดงความคิดเห็น</a></li>
+                        <!--                    -------------------------------------------------------------------------------------------สนทนาข้อความ------------------------------->
+
+                        <li class=" <?php if ($active == "chat") {
+                            echo "active";
+                        } ?>"><a data-toggle="tab" href="#menu5">สนทนาข้อความ</a></li>
 
                     <?php } ?>
                 </ul>
                 <div class="tab-content" style="margin-top: 50px">
-                    <div id="home" class="tab-pane fade <?php if($active == 0 ){echo "in active";} ?>">
+                    <!--                    -------------------------------------------------------------------------------------------ข้อมูลส่วนตัวช่าง------------------------------->
+
+                    <div id="home" class="tab-pane fade <?php if (($active == "home") || ($active == "")) {
+                        echo "in active";
+                    } ?>">
                         <div class="row">
                             <div class="col-md-6">
                                 <script type="text/javascript">
@@ -221,35 +261,39 @@ if (mysqli_num_rows($result) > 0) {
 
                                 <style>
                                     .star-rating {
-                                        line-height:32px;
-                                        font-size:1.25em;
+                                        line-height: 32px;
+                                        font-size: 1.25em;
                                     }
 
-                                    .star-rating .fa-star{color: orange;}
+                                    .star-rating .fa-star {
+                                        color: orange;
+                                    }
                                 </style>
                                 <form action="star-point.php?id=<?php echo $id ?>&" method="post">
-                                <h2>Star Rating</h2>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="star-rating">
-                                            <span class="fa fa-star-o" data-rating="1"></span>
-                                            <span class="fa fa-star-o" data-rating="2"></span>
-                                            <span class="fa fa-star-o" data-rating="3"></span>
-                                            <span class="fa fa-star-o" data-rating="4"></span>
-                                            <span class="fa fa-star-o" data-rating="5"></span>
-                                            <input type="hidden" name="whatever1" class="rating-value" value="<?php echo $star ?>">
+                                    <h2>Star Rating</h2>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="star-rating">
+                                                <span class="fa fa-star-o" data-rating="1"></span>
+                                                <span class="fa fa-star-o" data-rating="2"></span>
+                                                <span class="fa fa-star-o" data-rating="3"></span>
+                                                <span class="fa fa-star-o" data-rating="4"></span>
+                                                <span class="fa fa-star-o" data-rating="5"></span>
+                                                <input type="hidden" name="whatever1" class="rating-value"
+                                                       value="<?php echo $star ?>">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                    <button class="btn btn-success" type="submit" name="submit" value="ให้ดาว">ให้ดาว</button>
+                                    <button class="btn btn-success" type="submit" name="submit" value="ให้ดาว">ให้ดาว
+                                    </button>
                                 </form>
                                 <script type="text/javascript">
 
 
                                     var $star_rating = $('.star-rating .fa');
 
-                                    var SetRatingStar = function() {
-                                        return $star_rating.each(function() {
+                                    var SetRatingStar = function () {
+                                        return $star_rating.each(function () {
                                             if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
                                                 return $(this).removeClass('fa-star-o').addClass('fa-star');
                                             } else {
@@ -258,17 +302,16 @@ if (mysqli_num_rows($result) > 0) {
                                         });
                                     };
 
-                                    $star_rating.on('click', function() {
+                                    $star_rating.on('click', function () {
                                         $star_rating.siblings('input.rating-value').val($(this).data('rating'));
                                         return SetRatingStar();
                                     });
 
                                     SetRatingStar();
-                                    $(document).ready(function() {
+                                    $(document).ready(function () {
 
                                     });
                                 </script>
-
 
 
                             </div>
@@ -307,6 +350,8 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
 
                     </div>
+                    <!--                    -------------------------------------------------------------------------------------------ประเภทงานที่ทำ------------------------------->
+
                     <div id="menu1" class="tab-pane fade">
                         <div class="card" style="margin-top: 20px">
                             <!-- Default panel contents -->
@@ -453,6 +498,9 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
 
                     </div>
+
+                    <!--                    -------------------------------------------------------------------------------------------รูปประสบการณ์ทำงาน------------------------------->
+
                     <div id="menu2" class="tab-pane fade">
                         <div class="container" align="center">
                             <div class="row">
@@ -481,6 +529,9 @@ if (mysqli_num_rows($result) > 0) {
                             <br>
                         </div>
                     </div>
+
+                    <!--                    -------------------------------------------------------------------------------------------ใบรับรองอาวิชาชีพ------------------------------->
+
                     <div id="menu3" class="tab-pane fade">
                         <div class="container" align="center">
                             <div class="row">
@@ -510,101 +561,241 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
 
 
-
-
-
-
                     </div>
-                    <div id="menu4" class="tab-pane fade <?php if($active == 4 ){echo "in active";} ?>" >
 
+                    <!--                    -------------------------------------------------------------------------------------------แสดงความคิดเห็น------------------------------->
+
+                    <div id="menu4" class="tab-pane fade <?php if ($active == "comment") {
+                        echo "in active";
+                    } ?>">
                         <div class="detailBox">
                             <div class="titleBox">
                                 <label>แสดงความคิดเห็น</label>
                                 <button type="button" class="close" aria-hidden="true">&times;</button>
                             </div>
                             <div class="actionBox">
-                                <ul class="commentList">
-                                <?php
-                                $count = 0;
-                                $sql2 = "SELECT cm.id, cm.technician_id, cm.user_id, cm.text ,cm.date, us.firstname, us.status, us.avatar_path, us.star
+                                <ul class="commentList" id="commentList">
+                                    <?php
+                                    $count = 0;
+                                    $sql2 = "SELECT cm.id, cm.technician_id, cm.user_id, cm.text ,cm.date, us.firstname, us.status, us.avatar_path, us.star
                                         FROM comment as cm
                                         LEFT JOIN users as us
-                                        ON cm.user_id = us.id WHERE cm.technician_id ='$id' ORDER BY date DESC";
-                                $query2 = mysqli_query($connect, $sql2);
-                                $rowcount = mysqli_num_rows($query2);
-                                while ($row = mysqli_fetch_array($query2)) {
-                                    if ($count == 0){
-                                        $count ++;
+                                        ON cm.user_id = us.id WHERE cm.technician_id ='$id' ORDER BY date ASC ";
+                                    $query2 = mysqli_query($connect, $sql2);
+                                    $rowcount = mysqli_num_rows($query2);
+                                    while ($row = mysqli_fetch_array($query2)) {
+                                        if ($count == 0) {
+                                            $count++;
 
-                                        ?>
-                                        <article class="row">
-                                            <div class="col-md-10 col-sm-10">
-                                                <div class="panel panel-default arrow right">
-                                                    <div class="panel-body">
-                                                        <header class="text-right">
-                                                            <div class="comment-user"><i class="fa fa-user"></i> <?php echo $row['status']; ?></div>
-                                                            <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $row['date']; ?></time>
-                                                        </header>
-                                                        <div class="comment-post">
-                                                            <p>
-                                                                <?php echo $row['text']; ?>
-                                                            </p>
+                                            ?>
+                                            <article class="row">
+                                                <div class="col-md-10 col-sm-10">
+                                                    <div class="panel panel-default arrow right">
+                                                        <div class="panel-body">
+                                                            <header class="text-right">
+                                                                <div class="comment-user"><i
+                                                                            class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                                                </div>
+                                                                <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                    <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
+                                                                </time>
+                                                            </header>
+                                                            <div class="comment-post">
+                                                                <p>
+                                                                    <?php echo $row['text']; ?>
+                                                                </p>
+                                                            </div>
+                                                            <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                         </div>
-<!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 hidden-xs">
-                                                <figure class="thumbnail">
-                                                    <img class="img-responsive" src="<?php echo $row['avatar_path']; ?>" />
-                                                    <figcaption class="text-center"><?php echo $row['firstname']; ?></figcaption>
-                                                </figure>
-                                            </div>
-                                        </article>
-                                    <?php } else{
-                                        $count --;
-                                        ?>
-                                        <article class="row">
-                                            <div class="col-md-2 col-sm-2 hidden-xs">
-                                                <figure class="thumbnail">
-                                                    <img class="img-responsive" src="<?php echo $row['avatar_path']; ?>" />
-                                                    <figcaption class="text-center"><?php echo $row['firstname']; ?></figcaption>
-                                                </figure>
-                                            </div>
-                                            <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <div class="panel panel-default arrow left">
-                                                    <div class="panel-body">
-                                                        <header class="text-left">
-                                                            <div class="comment-user"><i class="fa fa-user"></i> <?php echo $row['status']; ?></div>
-                                                            <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $row['date']; ?></time>
-                                                        </header>
-                                                        <div class="comment-post">
-                                                            <p>
-                                                                <?php echo $row['text']; ?>
-                                                            </p>
+                                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                                    <figure class="thumbnail">
+                                                        <img class="img-responsive"
+                                                             src="<?php echo $row['avatar_path']; ?>"/>
+                                                        <figcaption
+                                                                class="text-center"><?php echo $row['firstname']; ?></figcaption>
+                                                    </figure>
+                                                </div>
+                                            </article>
+                                        <?php } else {
+                                            $count--;
+                                            ?>
+                                            <article class="row">
+                                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                                    <figure class="thumbnail">
+                                                        <img class="img-responsive"
+                                                             src="<?php echo $row['avatar_path']; ?>"/>
+                                                        <figcaption
+                                                                class="text-center"><?php echo $row['firstname']; ?></figcaption>
+                                                    </figure>
+                                                </div>
+                                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                                    <div class="panel panel-default arrow left">
+                                                        <div class="panel-body">
+                                                            <header class="text-left">
+                                                                <div class="comment-user"><i
+                                                                            class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                                                </div>
+                                                                <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                    <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
+                                                                </time>
+                                                            </header>
+                                                            <div class="comment-post">
+                                                                <p>
+                                                                    <?php echo $row['text']; ?>
+                                                                </p>
+                                                            </div>
+                                                            <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                         </div>
-<!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </article>
+                                            </article>
 
-                                    <?php }
-                                 } ?>
+                                        <?php }
+                                    } ?>
 
 
                                 </ul>
-                                <form class="form-inline" name="frm" role="form"  method="post" action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>">
+                                <form class="form-inline" name="frm" role="form" method="post"
+                                      action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>&active=comment">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="text" placeholder="ข้อความของคุณ" />
+                                        <input class="form-control" type="text" name="text"
+                                               placeholder="ข้อความของคุณ"/>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-default" name="bt" value="ส่งข้อมูล" id="GGG">ส่ง</button>
+                                        <button class="btn btn-default" name="bt" value="ส่งข้อมูล" id="GGG">ส่ง
+                                        </button>
                                     </div>
                                 </form>
                             </div>
+                            <script>
+
+                                var objDiv = document.getElementById("commentList");
+                                objDiv.scrollTop = objDiv.scrollHeight;
+
+                            </script>
                         </div>
                     </div>
+
+                    <!--                    -------------------------------------------------------------------------------------------สนทนาข้อความ------------------------------->
+
+                    <div id="menu5" class="tab-pane fade <?php if ($active == "chat") {
+                        echo "in active";
+                    } ?>">
+                        <div class="detailBox">
+                            <div class="titleBox">
+                                <label>แสดงความคิดเห็น</label>
+                                <button type="button" class="close" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="actionBox">
+                                <ul class="commentList" id="commentList2">
+                                    <?php
+                                    $count3 = 0;
+                                    echo "ME_ID : ". $user_id = $_SESSION['id'];
+                                    echo "<br>";
+                                    echo "YOU_ID : ". $id;
+                                    $sql3 = "SELECT ch.id, ch.me_id, ch.you_id, ch.message, ch.date, us.firstname, us.status, us.avatar_path, us.star
+                                        FROM chat as ch
+                                        LEFT JOIN users as us
+                                        ON ch.me_id = us.id WHERE (ch.me_id ='$user_id' AND ch.you_id = '$id') OR (ch.me_id ='$id' AND ch.you_id = '$user_id') ORDER BY date ASC ";
+                                    $query3 = mysqli_query($connect, $sql3);
+                                    $rowcount3 = mysqli_num_rows($query3);
+                                    while ($row = mysqli_fetch_array($query3)) {
+                                        if ($_SESSION['id']==$row['me_id']) {
+                                            $count++;
+                                            ?>
+
+                                            <article class="row">
+                                                <div class="col-md-10 col-sm-10">
+                                                    <div class="panel panel-default arrow right">
+                                                        <div class="panel-body">
+                                                            <header class="text-right">
+                                                                <div class="comment-user"><i
+                                                                            class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                                                </div>
+                                                                <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                    <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
+                                                                </time>
+                                                            </header>
+                                                            <div class="comment-post">
+                                                                <p>
+                                                                    <?php echo $row['message']; ?>
+                                                                </p>
+                                                            </div>
+                                                            <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                                    <figure class="thumbnail">
+                                                        <img class="img-responsive"
+                                                             src="<?php echo $row['avatar_path']; ?>"/>
+                                                        <figcaption
+                                                                class="text-center"><?php echo $row['firstname']; ?></figcaption>
+                                                    </figure>
+                                                </div>
+                                            </article>
+                                        <?php } else {
+                                            $count--;
+                                            ?>
+                                            <article class="row">
+                                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                                    <figure class="thumbnail">
+                                                        <img class="img-responsive"
+                                                             src="<?php echo $row['avatar_path']; ?>"/>
+                                                        <figcaption
+                                                                class="text-center"><?php echo $row['firstname']; ?></figcaption>
+                                                    </figure>
+                                                </div>
+                                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                                    <div class="panel panel-default arrow left">
+                                                        <div class="panel-body">
+                                                            <header class="text-left">
+                                                                <div class="comment-user"><i
+                                                                            class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                                                </div>
+                                                                <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                    <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
+                                                                </time>
+                                                            </header>
+                                                            <div class="comment-post">
+                                                                <p>
+                                                                    <?php echo $row['message']; ?>
+                                                                </p>
+                                                            </div>
+                                                            <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+
+                                        <?php }
+                                    } ?>
+
+
+                                </ul>
+                                <form class="form-inline" name="frm" role="form" method="post"
+                                      action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>&active=chat">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="text"
+                                               placeholder="ข้อความของคุณ"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-default" name="bt" value="ส่งข้อมูล" id="GGG">ส่ง
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+
+                                var objDiv = document.getElementById("commentList2");
+                                objDiv.scrollTop = objDiv.scrollHeight;
+
+                            </script>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

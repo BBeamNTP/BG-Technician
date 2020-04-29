@@ -58,6 +58,13 @@ if ($str == 'fixed') {
             max-width: 100%;
             overflow:auto;
         }
+        .commentList1 {
+            padding:0;
+            list-style:none;
+            max-height:95%;
+            max-width: 100%;
+            overflow:auto;
+        }
         .commentList li {
             margin:0;
             margin-top:10px;
