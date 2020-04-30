@@ -1,4 +1,4 @@
-<?php
+<?php // หน้า เพิ่ม ลด คำนวนรายการอุปกรณ์
 require 'header.php';
 require 'connection.php';
 if (!isset($_SESSION['email'])){

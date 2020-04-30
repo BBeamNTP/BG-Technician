@@ -11,7 +11,7 @@ require 'header.php';
 <div class="container">
     <div class="container" align="center" style="margin-top: 2%">
         <form action="register.php?id=1" method="post" enctype="multipart/form-data">
-            <h2>สมัครสมาชิกช่างผู้ให้บริการ</h2>
+            <h2>สมัครสมาชิกทั่วไป</h2>
             <hr class="style20">
             <div class="container" style="margin-top: 5%">
                 <div class="row">

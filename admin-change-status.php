@@ -2,7 +2,7 @@
 require 'connection.php';
 $id = $_GET['id'];
 $status = $_GET['status'];
-if (!isset($_SESSION['email']) && $status != "admin") {?>
+if (isset($_SESSION['email']) && $_SESSION['status'] != "admin") {?>
     <script type="text/javascript">
         // alert("เปลี่ยนแปลงข้อมูลเรียบร้อย")
         window.location.href = 'login.php';

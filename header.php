@@ -58,7 +58,7 @@ session_start();
                     <?php
                 }elseif(isset($_SESSION['email']) && ($_SESSION['status']=="admin")){
                     ?>
-                    <li><a href="" style="color: #ff8000"><span class="glyphicon glyphicon-text-color"></span> <?php echo $_SESSION['status'];?> </a></li>
+                    <li><a href="" style="color: #ff8000"><span class="glyphicon glyphicon-king"></span> <?php echo $_SESSION['status'];?> </a></li>
                     <li><a href="" style="color: #ff8000"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['firstname'];?> </a></li>
                     <li><a href="logout.php" style="color: #ff8000"><span class="glyphicon glyphicon-log-out"></span> ออกจากระบบ </a></li>
                     <?php

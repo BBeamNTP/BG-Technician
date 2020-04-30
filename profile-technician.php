@@ -114,7 +114,7 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                     <div class="col-md-4">
 
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="อีเมล์" required
+                            <label>อีเมล</label><input type="email" class="form-control" name="email" placeholder="อีเมล์" required
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<?php echo $email ?>"
                                    disabled>
                         </div>
@@ -123,35 +123,35 @@ if ((isset($_SESSION['email']) && ($_SESSION['status'] == "admin"))) {
                         <!--                                   required="true">-->
                         <!--                        </div>-->
                         <div class="form-group">
-                            <input type="text" class="form-control" name="firstname" placeholder="ชื่อจริง"
+                            <label>ชื่อจริง</label> <input type="text" class="form-control" name="firstname" placeholder="ชื่อจริง"
                                    value="<?php echo $firstname ?>"
                                    required="true">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="lastname" placeholder="นามสกุล"
+                            <label>นามสกุล</label><input type="text" class="form-control" name="lastname" placeholder="นามสกุล"
                                    value="<?php echo $lastname ?>"
                                    required="true">
                         </div>
                         <div class="form-group" style="margin-bottom: 15px"> เพศ :&nbsp;
-                            <label><input type="radio"
+                            <input type="radio"
                                           name="sex" <?php if (isset($sex) && $sex == "male") echo "checked"; ?>
                                           value="male" checked> เพศชาย </label>
-                            <label><input type="radio"
+                                            <input type="radio"
                                           name="sex" <?php if (isset($sex) && $sex == "female") echo "checked"; ?>
                                           value="female"> เพศหญิง </label>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="address" placeholder="ที่อยู่"
+                            <label>ที่อยู่</label><input type="text" class="form-control" name="address" placeholder="ที่อยู่"
                                    value="<?php echo $address ?>"
                                    required="true">
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" name="contact" placeholder="เบอร์โทรศัพท์"
+                            <label>เบอร์โทรศัพท์</label><input type="tel" class="form-control" name="contact" placeholder="เบอร์โทรศัพท์"
                                    value="<?php echo $contact ?>"
                                    required="true">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="detail"
+                            <label>รายละเอียดเพิ่มเติม</label><textarea class="form-control" rows="3" name="detail"
                                       placeholder="รายละเอียด"><?php echo $detail ?></textarea>
                         </div>
 

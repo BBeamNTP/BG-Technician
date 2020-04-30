@@ -42,7 +42,9 @@ if ($user_type == 1) { // user
             }
         }
     } else {
-        echo "no file ";
+        echo "ไม่มีรูป avatar";
+        $path_avatar = "img/1.png";
+
     }
 
     $query = "update users set firstname='$firstname', lastname='$lastname', sex='$sex', address='$address', contact='$contact', avatar_path='$path_avatar' where email='$email'";
@@ -61,7 +63,6 @@ else if ($user_type == 2) { // ช่าง
 
     $detail = $_POST['detail'];
 
-    $status = "technician";
     $target_dir = "uploads/$id/$email/avatar/";
     $target_dir_exprience = "uploads/$id/$email/exprience/";
     $target_dir_certificate = "uploads/$id/$email/certificate/";
@@ -96,7 +97,8 @@ else if ($user_type == 2) { // ช่าง
             }
         }
     } else {
-        echo "no file ";
+        echo "ไม่มีรูป avatar";
+        $path_avatar = "img/1.png";
     }
 
     //----- อัฟโหลด รูปประสบการณ์ ----- ได้หลายรูป
@@ -199,6 +201,8 @@ else if ($user_type == 2) { // ช่าง
         }
     }
 
+
+
     if(isset($status)&&$status=="wait-fix"){
         $query = "update users set firstname='$firstname', lastname='$lastname', sex='$sex', address='$address', contact='$contact',status='fixed', avatar_path='$path_avatar', detail='$detail' where email='$email'";
         $query_del_messgae = "DELETE FROM message WHERE email='$email'";
@@ -217,7 +221,7 @@ else if ($user_type == 2) { // ช่าง
             echo "Del error";
         }
     }
-
+echo "<--------------------------------------->". $status;
     if (mysqli_query($connect, $query)) {
         if(isset($status)&&$status=="wait-fix"){ ?>
             <script type="text/javascript">

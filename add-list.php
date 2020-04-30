@@ -1,4 +1,4 @@
-<?php
+<?php // หน้า เพิ่ม ลด คำนวนรายการอุปกรณ์
 require 'connection.php';
 session_start();
 $id = $_SESSION['id'];

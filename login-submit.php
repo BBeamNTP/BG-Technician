@@ -5,7 +5,14 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 if (empty($email) || empty($password)) {
-    echo '<script>alert("Both Fields are required")</script>';
+    ?>
+    //return false;
+    <script>
+        alert("กรุณากรอกข้อมูลให่ครบ")
+        window.location.href = 'login.php';
+    </script>';
+
+    <?php
 } else {
     $email = mysqli_real_escape_string($connect, $email);
     $password = mysqli_real_escape_string($connect, $password);
@@ -26,34 +33,34 @@ if (empty($email) || empty($password)) {
                 $_SESSION['status'] = $row['status'];
                 $_SESSION['avatar_path'] = $row['avatar_path'];
 //                echo "เข้าสู่ระบบ เสร็จสิ้น ";
-                if ($row['status'] =='admin'){
+                if ($row['status'] == 'admin') {
                     header("location:admin-index.php");
 
-                }else if ($row['status'] =='technician'){
+                } else if ($row['status'] == 'technician') {
                     header("location:index.php");
 
-                }else if($row['status'] =='wait'){
+                } else if ($row['status'] == 'wait') {
                     $status = $row['status'];
                     $id = $row['id'];
                     header("location:wait-status.php?id=$id&email=$email");
 
-                }else if($row['status'] =='wait-fix'){
+                } else if ($row['status'] == 'wait-fix') {
                     $status = $row['status'];
                     $id = $row['id'];
                     header("location:wait-status.php?id=$id&email=$email");
-                }else{
+                } else {
                     header("location:index.php");
                 }
             }
         }
-    } else {
+    } else { ?>
         //return false;
-        echo '<script>
-                        alert("Wrong User Details")
-                        window.location.href = \'login.php\';
-                      </script>';
+        <script>
+            alert("Wrong User Details")
+            window.location.href = 'login.php';
+        </script>';
 
-    }
+    <?php }
 }
 
 ?>

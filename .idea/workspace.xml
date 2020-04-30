@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="538f7c6e-6ae1-4dde-91e7-5f468e61a7fb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/add-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-change-status.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-change-status.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/change-message.php" beforeDir="false" afterPath="$PROJECT_DIR$/change-message.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-submit.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-submit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-all.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-all.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-technician.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-technician.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register-member.php" beforeDir="false" afterPath="$PROJECT_DIR$/register-member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register-technician.php" beforeDir="false" afterPath="$PROJECT_DIR$/register-technician.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update-profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/update-profile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +95,7 @@
       <workItem from="1588047655070" duration="132000" />
       <workItem from="1588047801748" duration="36004000" />
       <workItem from="1588130545469" duration="18962000" />
-      <workItem from="1588222775408" duration="26806000" />
+      <workItem from="1588222775408" duration="34409000" />
     </task>
     <servers />
   </component>
@@ -112,11 +125,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588265337637" />
-    <state x="107" y="113" width="1600" height="860" key="find.popup" timestamp="1588271954623">
+    <state x="107" y="113" width="1600" height="860" key="find.popup" timestamp="1588272786838">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1614" y="0" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@-1600.0.1600.860" timestamp="1588105264974" />
-    <state x="107" y="113" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588271954623" />
+    <state x="107" y="113" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588272786838" />
     <state x="-1418" y="50" key="new project wizard" timestamp="1587542912908">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>
@@ -129,5 +142,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588130554852" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/profile-all.php</url>
+          <line>130</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

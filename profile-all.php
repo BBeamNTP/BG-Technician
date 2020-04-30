@@ -1,7 +1,7 @@
 <?php
 require 'header.php';
 require 'connection.php';
-if ((!isset($_SESSION['email']))) {
+if (!isset($_SESSION['email'])) {
     header('location: login.php');
 }
 
@@ -74,12 +74,13 @@ if (mysqli_num_rows($result) > 0) {
         }
 
         .commentList {
-              padding: 0;
-              list-style: none;
-              max-height: 75%;
-              max-width: 100%;
-              overflow: auto;
-          }
+            padding: 0;
+            list-style: none;
+            max-height: 75%;
+            max-width: 100%;
+            overflow: auto;
+        }
+
         .commentLis3 {
 
             padding: 0;
@@ -88,6 +89,7 @@ if (mysqli_num_rows($result) > 0) {
             max-width: 100%;
             overflow: auto;
         }
+
         .commentList li {
             margin: 0;
             margin-top: 10px;
@@ -237,10 +239,10 @@ if (mysqli_num_rows($result) > 0) {
                             echo "active";
                         } ?>"><a data-toggle="tab" href="#menu4">แสดงความคิดเห็น</a></li>
                         <!--                    -------------------------------------------------------------------------------------------สนทนาข้อความ------------------------------->
-                        <?php if ((($_SESSION['status'] != 'technician') && ($row['status'] != 'technician')) || (($_SESSION['status'] == 'admin')&&($row['status'] == 'technician'))) { ?>
-                        <li class=" <?php if ($active == "chat") {
-                            echo "active";
-                        } ?>"><a data-toggle="tab" href="#menu5" >สนทนาข้อความ</a></li>
+                        <?php if ((($_SESSION['status'] != 'technician') && ($row['status'] != 'technician')) || (($_SESSION['status'] == 'admin') && ($row['status'] == 'technician'))) { ?>
+                            <li class=" <?php if ($active == "chat") {
+                                echo "active";
+                            } ?>"><a data-toggle="tab" href="#menu5">สนทนาข้อความ</a></li>
                         <?php } ?>
                     <?php } ?>
                 </ul>
@@ -698,31 +700,33 @@ if (mysqli_num_rows($result) > 0) {
                                     <button type="button" class="close" aria-hidden="true">&times;</button>
                                 </div>
                                 <div class="actionBox">
-                                    <?php if ($_SESSION['status']== 'technician' ) {?>
+                                    <?php if ($_SESSION['status'] == 'technician') { ?>
 
-                                    <ul class="commentLis3" id="commentList3">
-                                        <?php
-                                             $count3 = 0;
-                                             $session_id = $_SESSION['id'];
-                                             $sql3 = "SELECT us.firstname, us.status, us.avatar_path, us.star, rm.id, rm.user_a, rm.user_b, rm.date
+                                        <ul class="commentLis3" id="commentList3">
+                                            <?php
+                                            $count3 = 0;
+                                            $session_id = $_SESSION['id'];
+                                            $sql3 = "SELECT us.firstname, us.status, us.avatar_path, us.star, rm.id, rm.user_a, rm.user_b, rm.date
                                                       FROM users as us
                                                       LEFT JOIN room as rm
                                                       ON us.id = rm.user_a WHERE (rm.user_a = '$session_id') || (rm.user_b = '$session_id') ORDER BY date ASC ";
-                                             $query3 = mysqli_query($connect, $sql3);
-                                             $rowcount3 = mysqli_num_rows($query3);
-                                             while ($row = mysqli_fetch_array($query3)) { ?>
-                                                 <a href="profile-all.php?id=<?php echo $row['user_a'] ?>&active=chat" >
-                                                     <img src="<?php echo $row['avatar_path']?>" alt="Lights" style="hight:50px; width: 50px; margin-top: 10px" class="img-circle" >
-                                                     <div class="caption" style="margin-bottom: -10px">
-                                                         <p href="profile-all.php?id=<?php echo $row['user_a'] ?>&active=chat"><?php echo $row['firstname'];?> </p>
+                                            $query3 = mysqli_query($connect, $sql3);
+                                            $rowcount3 = mysqli_num_rows($query3);
+                                            while ($row = mysqli_fetch_array($query3)) { ?>
+                                                <a href="profile-all.php?id=<?php echo $row['user_a'] ?>&active=chat">
+                                                    <img src="<?php echo $row['avatar_path'] ?>" alt="Lights"
+                                                         style="hight:50px; width: 50px; margin-top: 10px"
+                                                         class="img-circle">
+                                                    <div class="caption" style="margin-bottom: -10px">
+                                                        <p href="profile-all.php?id=<?php echo $row['user_a'] ?>&active=chat"><?php echo $row['firstname']; ?> </p>
 
-                                                     </div>
-                                                 </a>
-                                             <?php }
-                                        $count++;
-                                        ?>
-                                    </ul>
-                                    <?php }else if ($_SESSION['status']== 'user' ) {?>
+                                                    </div>
+                                                </a>
+                                            <?php }
+                                            $count++;
+                                            ?>
+                                        </ul>
+                                    <?php } else if ($_SESSION['status'] == 'user') { ?>
                                         <ul class="commentLis3" id="commentList3">
                                             <?php
                                             $count3 = 0;
@@ -734,10 +738,12 @@ if (mysqli_num_rows($result) > 0) {
                                             $query3 = mysqli_query($connect, $sql3);
                                             $rowcount3 = mysqli_num_rows($query3);
                                             while ($row = mysqli_fetch_array($query3)) { ?>
-                                                <a href="profile-all.php?id=<?php echo $row['user_b'] ?>&active=chat" >
-                                                    <img src="<?php echo $row['avatar_path']?>" alt="Lights" style="hight:50px; width: 50px; margin-top: 10px" class="img-circle" >
+                                                <a href="profile-all.php?id=<?php echo $row['user_b'] ?>&active=chat">
+                                                    <img src="<?php echo $row['avatar_path'] ?>" alt="Lights"
+                                                         style="hight:50px; width: 50px; margin-top: 10px"
+                                                         class="img-circle">
                                                     <div class="caption" style="margin-bottom: -10px">
-                                                        <p href="profile-all.php?id=<?php echo $row['user_b'] ?>&active=chat"><?php echo $row['firstname'];?> </p>
+                                                        <p href="profile-all.php?id=<?php echo $row['user_b'] ?>&active=chat"><?php echo $row['firstname']; ?> </p>
 
                                                     </div>
                                                 </a>
@@ -746,9 +752,9 @@ if (mysqli_num_rows($result) > 0) {
                                             ?>
                                         </ul>
 
-                                   <?php }else{
-                                        echo "status ... : ". $_SESSION['status'];
-                                    }?>
+                                    <?php } else {
+                                        echo "status ... : " . $_SESSION['status'];
+                                    } ?>
                                 </div>
                                 <script>
 
@@ -761,7 +767,7 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="col-md-10">
                             <div class="detailBox">
                                 <div class="titleBox">
-                                    <label>กำลังสนทนากับ <?php echo $firstname?></label>
+                                    <label>กำลังสนทนากับ <?php echo $firstname ?></label>
                                     <button type="button" class="close" aria-hidden="true">&times;</button>
                                 </div>
                                 <div class="actionBox">
@@ -779,7 +785,7 @@ if (mysqli_num_rows($result) > 0) {
                                         $rowcount3 = mysqli_num_rows($query3);
 
                                         while ($row = mysqli_fetch_array($query3)) {
-                                            if ($_SESSION['id']==$row['me_id']) {
+                                            if ($_SESSION['id'] == $row['me_id']) {
                                                 $count++;
                                                 ?>
 
@@ -791,7 +797,8 @@ if (mysqli_num_rows($result) > 0) {
                                                                     <div class="comment-user"><i
                                                                                 class="fa fa-user"></i> <?php echo $row['status']; ?>
                                                                     </div>
-                                                                    <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                    <time class="comment-date"
+                                                                          datetime="16-12-2014 01:05">
                                                                         <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
                                                                     </time>
                                                                 </header>
@@ -834,7 +841,8 @@ if (mysqli_num_rows($result) > 0) {
                                                                     <div class="comment-user"><i
                                                                                 class="fa fa-user"></i> <?php echo $row['status']; ?>
                                                                     </div>
-                                                                    <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                    <time class="comment-date"
+                                                                          datetime="16-12-2014 01:05">
                                                                         <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
                                                                     </time>
                                                                 </header>
@@ -850,13 +858,17 @@ if (mysqli_num_rows($result) > 0) {
                                                 </article>
 
                                             <?php }
-                                           $room_id = $row['room_id'];
+                                            $room_id = $row['room_id'];
                                         } ?>
 
 
                                     </ul>
                                     <form class="form-inline" name="frm" role="form" method="post"
-                                          action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>&active=chat&room_id=<?php if($rowcount3==0) {echo "newroom";}else{ echo $room_id;}?>">
+                                          action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>&active=chat&room_id=<?php if ($rowcount3 == 0) {
+                                              echo "newroom";
+                                          } else {
+                                              echo $room_id;
+                                          } ?>">
                                         <div class="form-group">
                                             <input class="form-control" type="text" name="text"
                                                    placeholder="ข้อความของคุณ"/>

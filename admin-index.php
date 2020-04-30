@@ -6,8 +6,11 @@ if (!isset($_SESSION['email']) && $_SESSION['status'] != "admin") {?>
         // alert("เปลี่ยนแปลงข้อมูลเรียบร้อย")
         window.location.href = 'login.php';
     </script><?php
+}
 
-}@$str = $_POST['test'];
+@$search = $_POST['search'];
+$str = "technician";
+@$str = $_POST['test'];
 if ($str == 'fixed') {
     $query = "SELECT * FROM users WHERE status = 'fixed'";
     $result = mysqli_query($connect, $query);
@@ -20,8 +23,11 @@ if ($str == 'fixed') {
 } else if ($str == 'user') {
     $query = "SELECT * FROM users WHERE status = 'user'";
     $result = mysqli_query($connect, $query);
-} else {
+} else if ($str == 'technician'){
     $query = "SELECT * FROM users WHERE status='technician'";
+    $result = mysqli_query($connect, $query);
+}else{
+    $query = "SELECT * FROM users WHERE ((email LIKE '$search%') || (firstname LIKE '$search%') || (lastname LIKE '$search%') || (contact LIKE '$search%')) && ((status != 'admin') || (status != 'Admin')) ";
     $result = mysqli_query($connect, $query);
 }
 ?>
@@ -90,6 +96,16 @@ if ($str == 'fixed') {
 <div class="container">
 
     <h2>รายชื่อผู้สมัครชื่อทั้งหมด</h2>
+    <form class="navbar-form navbar-left" method="post" action="">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" id="search" placeholder="ค้นหา">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" style="background-color: orange">
+                    <i class="glyphicon glyphicon-search" style="height: 20px; top: 4px;" ></i>
+                </button>
+            </div>
+        </div>
+    </form>
     <div align="center">
         <form name="form" action="admin-index.php" method="post">
             <label>
@@ -124,6 +140,7 @@ if ($str == 'fixed') {
                 } ?> >
                 <img src="img/user.jpg">
             </label>
+
             <script type='text/javascript'>
                 $(document).ready(function () {
                     $('input[name=test]').change(function () {
