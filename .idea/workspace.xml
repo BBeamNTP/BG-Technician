@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="538f7c6e-6ae1-4dde-91e7-5f468e61a7fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test-chat/chatroom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/add-list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-all.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-all.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/star-point.php" beforeDir="false" afterPath="$PROJECT_DIR$/star-point.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +82,7 @@
       <workItem from="1588047655070" duration="132000" />
       <workItem from="1588047801748" duration="36004000" />
       <workItem from="1588130545469" duration="18962000" />
-      <workItem from="1588222775408" duration="26215000" />
+      <workItem from="1588222775408" duration="26806000" />
     </task>
     <servers />
   </component>
