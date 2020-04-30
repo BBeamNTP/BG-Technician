@@ -4,12 +4,9 @@ require 'connection.php';
 if (!isset($_SESSION['email'])){
     header('location: login.php');
 }
-echo $star = $_POST['whatever1'];
-echo '<br>';
-echo $tecinician_id = $_GET['id'];
-echo '<br>';
-echo $user_id = $_SESSION['id'];
-echo '<br>';
+$star = $_POST['whatever1'];
+$tecinician_id = $_GET['id'];
+$user_id = $_SESSION['id'];
 if (isset($star) && ($star != '')) {
 
 }

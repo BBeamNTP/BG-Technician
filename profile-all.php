@@ -36,10 +36,9 @@ if (mysqli_num_rows($result) > 0) {
         @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 
         .detailBox {
-            width: 90%;
+            width: 100%;
             height: 55%;
             border: 1px solid #bbb;
-            margin: 50px;
         }
 
         .titleBox {
@@ -75,13 +74,20 @@ if (mysqli_num_rows($result) > 0) {
         }
 
         .commentList {
+              padding: 0;
+              list-style: none;
+              max-height: 75%;
+              max-width: 100%;
+              overflow: auto;
+          }
+        .commentLis3 {
+
             padding: 0;
             list-style: none;
             max-height: 80%;
             max-width: 100%;
             overflow: auto;
         }
-
         .commentList li {
             margin: 0;
             margin-top: 10px;
@@ -119,6 +125,9 @@ if (mysqli_num_rows($result) > 0) {
         }
 
     </style>
+    <META HTTP-EQUIV="REFRESH" CONTENT="30">
+    <?php //<META HTTP-EQUIV="REFRESH" CONTENT="5">REFRESH ทุก 5 วินาที ?>
+    <title>Untitled Document</title>
 </head>
 <body>
 
@@ -150,7 +159,6 @@ if (mysqli_num_rows($result) > 0) {
 
                     <!--                    </form>-->
                 </div>
-
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
                     <?php if (isset($status) && $status == "wait") { ?>
@@ -229,11 +237,11 @@ if (mysqli_num_rows($result) > 0) {
                             echo "active";
                         } ?>"><a data-toggle="tab" href="#menu4">แสดงความคิดเห็น</a></li>
                         <!--                    -------------------------------------------------------------------------------------------สนทนาข้อความ------------------------------->
-
+                        <?php if ((($_SESSION['status'] != 'technician') && ($row['status'] != 'technician')) || (($_SESSION['status'] == 'admin')&&($row['status'] == 'technician'))) { ?>
                         <li class=" <?php if ($active == "chat") {
                             echo "active";
-                        } ?>"><a data-toggle="tab" href="#menu5">สนทนาข้อความ</a></li>
-
+                        } ?>"><a data-toggle="tab" href="#menu5" >สนทนาข้อความ</a></li>
+                        <?php } ?>
                     <?php } ?>
                 </ul>
                 <div class="tab-content" style="margin-top: 50px">
@@ -683,117 +691,192 @@ if (mysqli_num_rows($result) > 0) {
                     <div id="menu5" class="tab-pane fade <?php if ($active == "chat") {
                         echo "in active";
                     } ?>">
-                        <div class="detailBox">
-                            <div class="titleBox">
-                                <label>แสดงความคิดเห็น</label>
-                                <button type="button" class="close" aria-hidden="true">&times;</button>
+                        <div class="col-md-2">
+                            <div class="detailBox">
+                                <div class="titleBox">
+                                    <label>แชท</label>
+                                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="actionBox">
+                                    <?php if ($_SESSION['status']== 'technician' ) {?>
+
+                                    <ul class="commentLis3" id="commentList3">
+                                        <?php
+                                             $count3 = 0;
+                                             $session_id = $_SESSION['id'];
+                                             $sql3 = "SELECT us.firstname, us.status, us.avatar_path, us.star, rm.id, rm.user_a, rm.user_b, rm.date
+                                                      FROM users as us
+                                                      LEFT JOIN room as rm
+                                                      ON us.id = rm.user_a WHERE (rm.user_a = '$session_id') || (rm.user_b = '$session_id') ORDER BY date ASC ";
+                                             $query3 = mysqli_query($connect, $sql3);
+                                             $rowcount3 = mysqli_num_rows($query3);
+                                             while ($row = mysqli_fetch_array($query3)) { ?>
+                                                 <a href="profile-all.php?id=<?php echo $row['user_a'] ?>&active=chat" >
+                                                     <img src="<?php echo $row['avatar_path']?>" alt="Lights" style="hight:50px; width: 50px; margin-top: 10px" class="img-circle" >
+                                                     <div class="caption" style="margin-bottom: -10px">
+                                                         <p href="profile-all.php?id=<?php echo $row['user_a'] ?>&active=chat"><?php echo $row['firstname'];?> </p>
+
+                                                     </div>
+                                                 </a>
+                                             <?php }
+                                        $count++;
+                                        ?>
+                                    </ul>
+                                    <?php }else if ($_SESSION['status']== 'user' ) {?>
+                                        <ul class="commentLis3" id="commentList3">
+                                            <?php
+                                            $count3 = 0;
+                                            $session_id = $_SESSION['id'];
+                                            $sql3 = "SELECT us.firstname, us.status, us.avatar_path, us.star, rm.id, rm.user_a, rm.user_b, rm.date
+                                                      FROM users as us
+                                                      LEFT JOIN room as rm
+                                                      ON us.id = rm.user_b WHERE (rm.user_a = '$session_id') || (rm.user_b = '$session_id') ORDER BY date ASC ";
+                                            $query3 = mysqli_query($connect, $sql3);
+                                            $rowcount3 = mysqli_num_rows($query3);
+                                            while ($row = mysqli_fetch_array($query3)) { ?>
+                                                <a href="profile-all.php?id=<?php echo $row['user_b'] ?>&active=chat" >
+                                                    <img src="<?php echo $row['avatar_path']?>" alt="Lights" style="hight:50px; width: 50px; margin-top: 10px" class="img-circle" >
+                                                    <div class="caption" style="margin-bottom: -10px">
+                                                        <p href="profile-all.php?id=<?php echo $row['user_b'] ?>&active=chat"><?php echo $row['firstname'];?> </p>
+
+                                                    </div>
+                                                </a>
+                                            <?php }
+                                            $count++;
+                                            ?>
+                                        </ul>
+
+                                   <?php }else{
+                                        echo "status ... : ". $_SESSION['status'];
+                                    }?>
+                                </div>
+                                <script>
+
+                                    var objDiv = document.getElementById("commentList2");
+                                    objDiv.scrollTop = objDiv.scrollHeight;
+
+                                </script>
                             </div>
-                            <div class="actionBox">
-                                <ul class="commentList" id="commentList2">
-                                    <?php
-                                    $count3 = 0;
-                                    echo "ME_ID : ". $user_id = $_SESSION['id'];
-                                    echo "<br>";
-                                    echo "YOU_ID : ". $id;
-                                    $sql3 = "SELECT ch.id, ch.me_id, ch.you_id, ch.message, ch.date, us.firstname, us.status, us.avatar_path, us.star
+                        </div>
+                        <div class="col-md-10">
+                            <div class="detailBox">
+                                <div class="titleBox">
+                                    <label>กำลังสนทนากับ <?php echo $firstname?></label>
+                                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="actionBox">
+                                    <ul class="commentList" id="commentList2">
+                                        <?php
+                                        $count3 = 0;
+                                        $room_id = "";
+                                        $user_id = $_SESSION['id'];
+                                        $id;
+                                        $sql3 = "SELECT ch.id,ch.room_id, ch.me_id, ch.you_id, ch.message, ch.date, us.firstname, us.status, us.avatar_path, us.star
                                         FROM chat as ch
                                         LEFT JOIN users as us
                                         ON ch.me_id = us.id WHERE (ch.me_id ='$user_id' AND ch.you_id = '$id') OR (ch.me_id ='$id' AND ch.you_id = '$user_id') ORDER BY date ASC ";
-                                    $query3 = mysqli_query($connect, $sql3);
-                                    $rowcount3 = mysqli_num_rows($query3);
-                                    while ($row = mysqli_fetch_array($query3)) {
-                                        if ($_SESSION['id']==$row['me_id']) {
-                                            $count++;
-                                            ?>
+                                        $query3 = mysqli_query($connect, $sql3);
+                                        $rowcount3 = mysqli_num_rows($query3);
 
-                                            <article class="row">
-                                                <div class="col-md-10 col-sm-10">
-                                                    <div class="panel panel-default arrow right">
-                                                        <div class="panel-body">
-                                                            <header class="text-right">
-                                                                <div class="comment-user"><i
-                                                                            class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                        while ($row = mysqli_fetch_array($query3)) {
+                                            if ($_SESSION['id']==$row['me_id']) {
+                                                $count++;
+                                                ?>
+
+                                                <article class="row" style="max-width: 90%">
+                                                    <div class="col-md-10 col-sm-10">
+                                                        <div class="panel panel-default arrow right">
+                                                            <div class="panel-body">
+                                                                <header class="text-right">
+                                                                    <div class="comment-user"><i
+                                                                                class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                                                    </div>
+                                                                    <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                        <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
+                                                                    </time>
+                                                                </header>
+                                                                <div class="comment-post">
+                                                                    <p>
+                                                                        <?php echo $row['message']; ?>
+                                                                    </p>
                                                                 </div>
-                                                                <time class="comment-date" datetime="16-12-2014 01:05">
-                                                                    <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
-                                                                </time>
-                                                            </header>
-                                                            <div class="comment-post">
-                                                                <p>
-                                                                    <?php echo $row['message']; ?>
-                                                                </p>
+                                                                <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                             </div>
-                                                            <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-2 col-sm-2 hidden-xs">
-                                                    <figure class="thumbnail">
-                                                        <img class="img-responsive"
-                                                             src="<?php echo $row['avatar_path']; ?>"/>
-                                                        <figcaption
-                                                                class="text-center"><?php echo $row['firstname']; ?></figcaption>
-                                                    </figure>
-                                                </div>
-                                            </article>
-                                        <?php } else {
-                                            $count--;
-                                            ?>
-                                            <article class="row">
-                                                <div class="col-md-2 col-sm-2 hidden-xs">
-                                                    <figure class="thumbnail">
-                                                        <img class="img-responsive"
-                                                             src="<?php echo $row['avatar_path']; ?>"/>
-                                                        <figcaption
-                                                                class="text-center"><?php echo $row['firstname']; ?></figcaption>
-                                                    </figure>
-                                                </div>
-                                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                                    <div class="panel panel-default arrow left">
-                                                        <div class="panel-body">
-                                                            <header class="text-left">
-                                                                <div class="comment-user"><i
-                                                                            class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                                    <div class="col-md-2 col-sm-2 hidden-xs">
+                                                        <figure class="thumbnail">
+                                                            <img class="img-responsive"
+                                                                 src="<?php echo $row['avatar_path']; ?>"/>
+                                                            <figcaption
+                                                                    class="text-center"><?php echo $row['firstname']; ?></figcaption>
+                                                        </figure>
+                                                    </div>
+
+                                                </article>
+
+                                            <?php } else {
+                                                $count--;
+                                                ?>
+                                                <article class="row">
+                                                    <div class="col-md-2 col-sm-2 hidden-xs">
+                                                        <figure class="thumbnail">
+                                                            <img class="img-responsive"
+                                                                 src="<?php echo $row['avatar_path']; ?>"/>
+                                                            <figcaption
+                                                                    class="text-center"><?php echo $row['firstname']; ?></figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-10 col-sm-10 col-xs-12">
+                                                        <div class="panel panel-default arrow left">
+                                                            <div class="panel-body">
+                                                                <header class="text-left">
+                                                                    <div class="comment-user"><i
+                                                                                class="fa fa-user"></i> <?php echo $row['status']; ?>
+                                                                    </div>
+                                                                    <time class="comment-date" datetime="16-12-2014 01:05">
+                                                                        <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
+                                                                    </time>
+                                                                </header>
+                                                                <div class="comment-post">
+                                                                    <p>
+                                                                        <?php echo $row['message']; ?>
+                                                                    </p>
                                                                 </div>
-                                                                <time class="comment-date" datetime="16-12-2014 01:05">
-                                                                    <i class="fa fa-clock-o"></i> <?php echo $row['date']; ?>
-                                                                </time>
-                                                            </header>
-                                                            <div class="comment-post">
-                                                                <p>
-                                                                    <?php echo $row['message']; ?>
-                                                                </p>
+                                                                <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                             </div>
-                                                            <!--                                                        <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </article>
+                                                </article>
 
-                                        <?php }
-                                    } ?>
+                                            <?php }
+                                           $room_id = $row['room_id'];
+                                        } ?>
 
 
-                                </ul>
-                                <form class="form-inline" name="frm" role="form" method="post"
-                                      action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>&active=chat">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" name="text"
-                                               placeholder="ข้อความของคุณ"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-default" name="bt" value="ส่งข้อมูล" id="GGG">ส่ง
-                                        </button>
-                                    </div>
-                                </form>
+                                    </ul>
+                                    <form class="form-inline" name="frm" role="form" method="post"
+                                          action="comment.php?id=<?php echo $id ?>&user_id=<?php echo $_SESSION['id']; ?>&active=chat&room_id=<?php if($rowcount3==0) {echo "newroom";}else{ echo $room_id;}?>">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="text"
+                                                   placeholder="ข้อความของคุณ"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-default" name="bt" value="ส่งข้อมูล" id="GGG">ส่ง
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <script>
+
+                                    var objDiv = document.getElementById("commentList2");
+                                    objDiv.scrollTop = objDiv.scrollHeight;
+
+                                </script>
                             </div>
-                            <script>
-
-                                var objDiv = document.getElementById("commentList2");
-                                objDiv.scrollTop = objDiv.scrollHeight;
-
-                            </script>
                         </div>
+
+
                     </div>
 
                 </div>
@@ -808,3 +891,5 @@ if (mysqli_num_rows($result) > 0) {
 </body>
 </html>
 
+
+}

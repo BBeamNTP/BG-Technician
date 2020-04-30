@@ -21,6 +21,11 @@ $sum = 0;
             width: 100%;
             height: 55%;
             border: 0px solid #bbb;
+        }
+        .detailBox3 {
+            width: 100%;
+            height: 55%;
+            border: 0px solid #bbb;
 
         }
 
@@ -135,7 +140,7 @@ $sum = 0;
 
                         while ($row = mysqli_fetch_array($result)) { ?>
                             <tr class="<?php if (($counter % 2) == 0) {
-                                echo "default";
+//                                echo "default";
                             } else {
                                 echo "warning";
                             } ?>">

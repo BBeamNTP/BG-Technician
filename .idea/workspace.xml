@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="538f7c6e-6ae1-4dde-91e7-5f468e61a7fb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test-chat/chatroom.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/add-list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/bg-database-28-04-20.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/bg-database-28-04-20.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-all.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile-all.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/star-point.php" beforeDir="false" afterPath="$PROJECT_DIR$/star-point.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,17 +52,17 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\BG-Technician" />
+      <recent name="C:\xampp\htdocs\BG-Techinician\uploads\img\avatar\2" />
+      <recent name="C:\xampp\htdocs\BG-Techinician\uploads\img\avatar\2\techinician1@mail.com" />
+      <recent name="C:\xampp\htdocs\BG-Techinician" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\BG-Technician" />
       <recent name="C:\xampp\htdocs\BG-Technician\uploads" />
       <recent name="C:\xampp\htdocs\BG-Technician\invoice" />
       <recent name="C:\xampp\htdocs\BG-Techinician\test" />
-      <recent name="C:\xampp\htdocs\BG-Techinician" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\BG-Technician" />
-      <recent name="C:\xampp\htdocs\BG-Techinician\uploads\img\avatar\2" />
-      <recent name="C:\xampp\htdocs\BG-Techinician\uploads\img\avatar\2\techinician1@mail.com" />
       <recent name="C:\xampp\htdocs\BG-Techinician" />
     </key>
   </component>
@@ -85,7 +89,8 @@
       <workItem from="1587967254425" duration="28334000" />
       <workItem from="1588047655070" duration="132000" />
       <workItem from="1588047801748" duration="36004000" />
-      <workItem from="1588130545469" duration="18675000" />
+      <workItem from="1588130545469" duration="18962000" />
+      <workItem from="1588222775408" duration="26215000" />
     </task>
     <servers />
   </component>
@@ -97,29 +102,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1587571643409" />
-    <state x="696" y="224" key="FileChooserDialogImpl" timestamp="1588172734763">
+    <state x="696" y="224" key="FileChooserDialogImpl" timestamp="1588227729782">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1020" y="185" key="FileChooserDialogImpl/-1600.0.1600.860/0.0.1920.1040@-1600.0.1600.860" timestamp="1587542775295" />
-    <state x="696" y="224" key="FileChooserDialogImpl/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588172734763" />
-    <state x="761" y="427" key="NewPhpFileDialog" timestamp="1588133453063">
+    <state x="696" y="224" key="FileChooserDialogImpl/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588227729782" />
+    <state x="761" y="427" key="NewPhpFileDialog" timestamp="1588256567690">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-966" y="353" key="NewPhpFileDialog/-1600.0.1600.860/0.0.1920.1040@-1600.0.1600.860" timestamp="1587544228344" />
-    <state x="761" y="427" key="NewPhpFileDialog/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588133453063" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1588047802871">
+    <state x="761" y="427" key="NewPhpFileDialog/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588256567690" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1588222888561">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588047802871" />
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588071000352">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588222888561" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588265337637">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588071000352" />
-    <state x="-1600" y="0" width="1600" height="860" key="find.popup" timestamp="1588176578517">
-      <screen x="-1600" y="0" width="1600" height="860" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588265337637" />
+    <state x="107" y="113" width="1600" height="860" key="find.popup" timestamp="1588271954623">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1614" y="0" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@-1600.0.1600.860" timestamp="1588105264974" />
-    <state x="-1600" y="0" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588176578517" />
+    <state x="107" y="113" width="1600" height="860" key="find.popup/-1600.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1588271954623" />
     <state x="-1418" y="50" key="new project wizard" timestamp="1587542912908">
       <screen x="-1600" y="0" width="1600" height="860" />
     </state>

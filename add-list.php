@@ -19,7 +19,6 @@ if (isset($_SESSION['email']) && $_GET['method'] =="add"){ // กรณี ส�
     }
 
 }else if (isset($_SESSION['email']) && $_GET['method'] =="del") {
-    echo "--------------------------------2";
 
     $query = "DELETE FROM `equipment` WHERE user_id='$id'";
     if (mysqli_query($connect, $query)) { ?>

@@ -46,20 +46,25 @@ session_start();
                 <?php
                 if (isset($_SESSION['email']) && ($_SESSION['status']=="user")) {
                     ?>
-                    <li><a href="profile-member.php" style="color: #ff8000"><span class="glyphicon glyphicon-user" ></span> โปรไฟล์ </a></li>
+                    <li><a href="profile-all.php?id=<?php echo $_SESSION['id']; ?>&active=chat" style="color: #ff8000"><span class="glyphicon glyphicon-comment"></span> Messenger </a></li>
+                    <li><a href="profile-member.php" style="color: #ff8000"><span class="glyphicon glyphicon-user" ></span> <?php echo $_SESSION['firstname'];?> </a></li>
                     <li><a href="logout.php" style="color: #ff8000"><span class="glyphicon glyphicon-log-out"></span> ออกจากระบบ </a></li>
                     <?php
                 } elseif(isset($_SESSION['email']) && ($_SESSION['status']=="technician")){
                     ?>
-                    <li><a href="profile-technician.php" style="color: #ff8000"><span class="glyphicon glyphicon-user"></span> โปรไฟล์ </a></li>
+                    <li><a href="profile-all.php?id=<?php echo $_SESSION['id']; ?>&active=chat" style="color: #ff8000"><span class="glyphicon glyphicon-comment"></span> Messenger </a></li>
+                    <li><a href="profile-technician.php" style="color: #ff8000"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['firstname'];?> </a></li>
                     <li><a href="logout.php" style="color: #ff8000"><span class="glyphicon glyphicon-log-out"></span> ออกจากระบบ </a></li>
                     <?php
                 }elseif(isset($_SESSION['email']) && ($_SESSION['status']=="admin")){
                     ?>
+                    <li><a href="" style="color: #ff8000"><span class="glyphicon glyphicon-text-color"></span> <?php echo $_SESSION['status'];?> </a></li>
+                    <li><a href="" style="color: #ff8000"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['firstname'];?> </a></li>
                     <li><a href="logout.php" style="color: #ff8000"><span class="glyphicon glyphicon-log-out"></span> ออกจากระบบ </a></li>
                     <?php
                 }elseif(isset($_SESSION['email']) && (($_SESSION['status']=="wait") || ($_SESSION['status']=="wait-fix") ||($_SESSION['status']=="fixed") )){
                     ?>
+                    <li><a href="" style="color: #ff8000"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['firstname'];?> </a></li>
                     <li><a href="logout.php" style="color: #ff8000"><span class="glyphicon glyphicon-log-out"></span> ออกจากระบบ </a></li>
                     <?php
                 }else{
