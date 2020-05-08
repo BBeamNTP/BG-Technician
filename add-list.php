@@ -18,6 +18,23 @@ if (isset($_SESSION['email']) && $_GET['method'] =="add"){ // กรณี ส�
         echo "error";
     }
 
+}else if (isset($_SESSION['email']) && $_GET['method'] =="edit") {
+
+    $item_id = $_GET['item_id'];
+    $eq_name = $_POST['eq_name'];
+    $price = $_POST['price'];
+    $amount = $_POST['amount'];
+    $sum_price = $price*$amount;
+    $query = " UPDATE `equipment` SET `item`='$eq_name',`price`=' $price',`amount`=' $amount',`total_price`='$sum_price' WHERE `id` = '$item_id'";
+    if (mysqli_query($connect, $query)) { ?>
+        <script type="text/javascript">
+            alert("แก้ไขรายการเรียบร้อย")
+            window.location.href = 'equipment-list.php';
+        </script>
+    <?php } else {
+        echo "error";
+    }
+
 }else if (isset($_SESSION['email']) && $_GET['method'] =="del") {
 
     $query = "DELETE FROM `equipment` WHERE user_id='$id'";
@@ -34,12 +51,14 @@ if (isset($_SESSION['email']) && $_GET['method'] =="add"){ // กรณี ส�
     $item_id = $_GET['item_id']."<br>";
     $query = "DELETE FROM `equipment` WHERE user_id='$id' AND id='$item_id'";
     if (mysqli_query($connect, $query)) {
-            header('location:equipment-list.php');
+        echo "else del-1";
+//            header('location:equipment-list.php');
     } else {
         echo "error";
     }
 
 }else{
-    header('location:login.php');
+    echo "else";
+//    header('location:login.php');
 }
 ?>

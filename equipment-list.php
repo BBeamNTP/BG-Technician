@@ -1,7 +1,7 @@
 <?php // หน้า เพิ่ม ลด คำนวนรายการอุปกรณ์
 require 'header.php';
 require 'connection.php';
-if (!isset($_SESSION['email'])){
+if (!isset($_SESSION['email'])) {
     header('location: login.php');
 }
 $user_id = $_SESSION['id'];
@@ -22,6 +22,7 @@ $sum = 0;
             height: 55%;
             border: 0px solid #bbb;
         }
+
         .detailBox3 {
             width: 100%;
             height: 55%;
@@ -54,6 +55,7 @@ $sum = 0;
             max-width: 100%;
             overflow: auto;
         }
+
         .commentLis2 {
             padding: 0;
             list-style: none;
@@ -92,14 +94,14 @@ $sum = 0;
 
     <h2>คำนวนราคาวัสดอุปกรณ์ เบื้องต้น</h2><br>
     <div align="center">
-        <ul class="commentLis2" >
+        <ul class="commentLis2">
             <form action="add-list.php?method=add" method="post">
                 <div class="col-xs-4">
-                    <label >ชื่อรายการ</label>
+                    <label>ชื่อรายการ</label>
                     <input class="form-control" id="ex3" type="text" name="eq_name">
                 </div>
                 <div class="col-xs-2">
-                    <label >จำนวน</label>
+                    <label>จำนวน</label>
                     <input class="form-control" id="ex1" type="text" name="amount">
                 </div>
                 <div class="col-xs-2">
@@ -111,7 +113,9 @@ $sum = 0;
                     <button class="btn btn-success" type="submit" name="submit">เพิ่มรายการ</button>
                 </div>
                 <div class="col-xs-1" style="padding-top: 24px">
-                    <a class="btn btn-danger" href="add-list.php?id=<?php echo $_SESSION['id']?>&method=<?php echo $value = "del"?>'" onClick="return confirm('คุณต้องการที่จะลบทั้งหมด ใช่หรือไม่');">ลบทั้งหมด</a>
+                    <a class="btn btn-danger"
+                       href="add-list.php?id=<?php echo $_SESSION['id'] ?>&method=<?php echo $value = "del" ?>'"
+                       onClick="return confirm('คุณต้องการที่จะลบทั้งหมด ใช่หรือไม่');">ลบทั้งหมด</a>
                 </div>
                 <div class="col-xs-1" style="padding-top: 24px">
                     <a class="btn btn-info" href="index.php">กลับสู่หน้าหลัก</a>
@@ -134,6 +138,7 @@ $sum = 0;
                             <th style="text-align: center">จำนวน</th>
                             <th style="text-align: center">ราคารวม</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         <?php
                         $counter = 1;
@@ -144,14 +149,30 @@ $sum = 0;
                             } else {
                                 echo "warning";
                             } ?>">
-                                <th style="text-align: center" width="10%" style="text-align: center"><?php echo $counter ?></th>
-                                <th style="text-align: center" width="25%"><?php echo $row['item']; ?></th>
-                                <th style="text-align: center" width="15%"><?php echo $row['price']; ?></th>
-                                <th style="text-align: center" width="15%"><?php echo $row['amount']; ?></th>
-                                <th style="text-align: center" width="15%"><?php echo $row['total_price']; ?></th>
+                                <form action="add-list.php?item_id=<?php echo $row['id']; ?>&method=edit" method="post">
+
+                                    <th style="text-align: center" width="10%"
+                                        style="text-align: center"><?php echo $counter ?></th>
+                                    <th style="text-align: center" width="25%"><input class="form-control" id="ex3"
+                                                                                      value="<?php echo $row['item']; ?>">
+                                    </th>
+                                    <th style="text-align: center" width="15%"><input class="form-control" id="ex1"
+                                                                                      type="text" name="price"
+                                                                                      value="<?php echo $row['price']; ?>">
+                                    </th>
+                                    <th style="text-align: center" width="15%"><input class="form-control" id="ex1"
+                                                                                      value="<?php echo $row['amount']; ?>">
+                                    </th>
+                                    <th style="text-align: center"
+                                        width="15%"><?php echo number_format($row['total_price'], 2); ?></th>
+                                    <th width="10%" align="center">
+                                        <button class="btn btn-info" type="submit" name="submit">ยืนการแก้ไข</button>
+
+                                    </th>
+                                </form>
                                 <th width="10%" align="center"><a class="btn btn-danger"
-                                                                 href="add-list.php?item_id=<?php echo $row['id']; ?>&method=del-1"
-                                                                 onClick="return confirm('คุณต้องการที่จะลบผู้ใช้ ท่านนี้ ใช่หรือไม่');">ลบ</a>
+                                                                  href="add-list.php?item_id=<?php echo $row['id']; ?>&method=del-1"
+                                                                  onClick="return confirm('คุณต้องการที่จะลบผู้ใช้ ท่านนี้ ใช่หรือไม่');">ลบ</a>
                                 </th>
                             </tr>
                             <?php $counter = $counter + 1;
@@ -172,7 +193,7 @@ $sum = 0;
 
     <div class="container">
         <div class="panel panel-default" align="center">
-            <div class="panel-body"><h3><?php echo "ราคารวมเบื้องต้นทั้งหมด คือ ". $sum . " บาท"?></h3></div>
+            <div class="panel-body"><h3><?php echo "ราคารวมเบื้องต้นทั้งหมด คือ " . $sum . " บาท" ?></h3></div>
         </div>
     </div>
 
