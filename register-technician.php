@@ -41,7 +41,7 @@ require 'header.php';
                     <div class="col-md-4">
 
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="อีเมล์" required
+                            <input type="email" class="form-control" name="email" placeholder="อีเมล" required
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                         </div>
                         <div class="form-group">
@@ -57,8 +57,8 @@ require 'header.php';
                                    required="true">
                         </div>
                         <div class="form-group" style="margin-bottom: 15px"> เพศ :&nbsp;
-                            <label><input type="radio" name="sex" value="male" checked> เพศชาย </label>
-                            <label><input type="radio" name="sex" value="female"> เพศหญิง </label>
+                            <label><input type="radio" name="sex" value="male" checked> ชาย </label>
+                            <label><input type="radio" name="sex" value="female"> หญิง </label>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="address" placeholder="ที่อยู่"
@@ -76,9 +76,9 @@ require 'header.php';
                     </div>
                     <div class="col-md-4">
 
-                        <div class="card" style="margin-top: 20px">
+                        <div class="card" style="margin-top: 20px; text-align:left">
                             <!-- Default panel contents -->
-                            <div class="card-header" style="margin-bottom: 10px">ประเภทช่าง</div>
+                            <div class="card-header" style="margin-bottom: 20px; text-align:center"><h3>ประเภทช่าง<h3></div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     ช่างไฟฟ้า

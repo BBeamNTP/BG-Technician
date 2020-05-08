@@ -127,8 +127,8 @@ if (mysqli_num_rows($result) > 0) {
         }
 
     </style>
-    <META HTTP-EQUIV="REFRESH" CONTENT="30">
-    <?php //<META HTTP-EQUIV="REFRESH" CONTENT="5">REFRESH ทุก 5 วินาที ?>
+    <META HTTP-EQUIV="REFRESH" CONTENT="60">
+    <?php //<META HTTP-EQUIV="REFRESH" CONTENT="60">REFRESH ทุก 60 วินาที ?>
     <title>Untitled Document</title>
 </head>
 <body>
@@ -142,7 +142,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="col-md-3" style="margin-top: 8px">
                     <!--                    <form method="get" action="index.php">-->
                     <!-- Material unchecked disabled -->
-                    <li>สถานะตรวจสอบ ไม่ผ่าน/ผ่าน
+                    <li>สถานะตรวจสอบ ผ่าน/ไม่ผ่าน
                         <label class="switch">
                             <input type="checkbox" class="primary" name="type1" id="type1" value="technician"
                                    onclick="window.location='admin-change-status.php?id=<?php echo $id ?>&status=<?php echo $status ?>'"
@@ -162,7 +162,7 @@ if (mysqli_num_rows($result) > 0) {
                     <!--                    </form>-->
                 </div>
                 <div class="col-md-5"></div>
-                <div class="col-md-2">
+                <div class="col-md-5">
                     <?php if (isset($status) && $status == "wait") { ?>
                         <form method="post"
                               action="wait-status.php?id=<?php echo $id ?>&email=<?php echo $email ?>&status=<?php echo $status ?>">
@@ -232,7 +232,7 @@ if (mysqli_num_rows($result) > 0) {
                         <li><a data-toggle="tab" href="#menu2">รูปประสบการณ์ทำงาน</a></li>
                         <!--                    -------------------------------------------------------------------------------------------ใบรับรองอาวิชาชีพ------------------------------->
 
-                        <li><a data-toggle="tab" href="#menu3">ใบรับรองอาวิชาชีพ</a></li>
+                        <li><a data-toggle="tab" href="#menu3">ใบรับรองวิชาชีพ</a></li>
                         <!--                    -------------------------------------------------------------------------------------------แสดงความคิดเห็น------------------------------->
 
                         <li class=" <?php if ($active == "comment") {
@@ -325,19 +325,20 @@ if (mysqli_num_rows($result) > 0) {
 
 
                             </div>
-                            <div class="col-md-6" style="margin-top: 40px">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4" style="margin-top: 40px">
 
-                                <div class="form-group">
-                                    <h5>อีเมล : <?php echo $email ?></h5>
+                                <div class="form-group" style="text-align:left">
+                                    <h3>อีเมล : <?php echo $email ?></h3>
                                 </div>
-                                <div class="form-group">
-                                    <h5>ชื่อ : <?php echo $firstname ?></h5>
+                                <div class="form-group" style="text-align:left">
+                                    <h3>ชื่อ : <?php echo $firstname ?></h3>
                                 </div>
-                                <div class="form-group">
-                                    <h5>นามสกุล : <?php echo $lastname ?></h5>
+                                <div class="form-group" style="text-align:left">
+                                <h3>นามสกุล : <?php echo $lastname ?></h3>
                                 </div>
-                                <div class="form-group">
-                                    <h5>เพศ : <?php if ($sex == "male") {
+                                <div class="form-group" style="text-align:left">
+                                <h3>เพศ : <?php if ($sex == "male") {
                                             echo "ชาย";
                                         } elseif ($sex == "female") {
                                             echo "หญิง";
@@ -345,17 +346,18 @@ if (mysqli_num_rows($result) > 0) {
                                             echo "ไม่ระบุ";
                                         } ?></h5>
                                 </div>
-                                <div class="form-group">
-                                    <h5>ที่อยู่ : <?php echo $address ?></h5>
+                                <div class="form-group" style="text-align:left">
+                                <h3>ที่อยู่ : <?php echo $address ?></h3>
                                 </div>
-                                <div class="form-group">
-                                    <h5>ติดต่อ : <?php echo $contact ?></h5>
+                                <div class="form-group" style="text-align:left">
+                                <h3>เบอร์โทรติดต่อ : <?php echo $contact ?></h3>
                                 </div>
-                                <div class="form-group">
-                                    <h5>รายละเอียด : <?php echo $detail ?></h5>
+                                <div class="form-group" style="text-align:left">
+                                <h3>รายละเอียด : <?php echo $detail ?></h3>
                                 </div>
 
                             </div>
+                            
 
                         </div>
 
@@ -380,7 +382,7 @@ if (mysqli_num_rows($result) > 0) {
 
                             ?>
                             <ul class="list-group list-group-flush" style="margin-left: 30%; margin-right: 30%;">
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างไฟฟ้า
                                     <label class="switch ">
 
@@ -398,7 +400,7 @@ if (mysqli_num_rows($result) > 0) {
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างประปา
                                     <label class="switch ">
                                         <input type="checkbox" class="primary" name="type1[2]" id="type1[]"
@@ -413,7 +415,7 @@ if (mysqli_num_rows($result) > 0) {
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างสี
                                     <label class="switch ">
                                         <input type="checkbox" class="info" name="type1[3]" id="type1[]"
@@ -428,7 +430,7 @@ if (mysqli_num_rows($result) > 0) {
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างปูน
                                     <label class="switch ">
                                         <input type="checkbox" class="green" name="type1[4]" id="type1[]"
@@ -443,7 +445,7 @@ if (mysqli_num_rows($result) > 0) {
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างเหล็ก
                                     <label class="switch ">
                                         <input type="checkbox" class="success" name="type1[5]" id="type1[]"
@@ -458,7 +460,7 @@ if (mysqli_num_rows($result) > 0) {
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างไม้
                                     <label class="switch ">
                                         <input type="checkbox" class="warning" name="type1[6]" id="type1[]"
@@ -473,7 +475,7 @@ if (mysqli_num_rows($result) > 0) {
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างหลังคา
                                     <label class="switch ">
                                         <input type="checkbox" class="pink" name="type1[7]" id="type1[]"
@@ -488,7 +490,7 @@ if (mysqli_num_rows($result) > 0) {
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" style="text-align:left">
                                     ช่างอิเล็กทรอนิกส์
                                     <label class="switch ">
                                         <input type="checkbox" class="danger" name="type1[8]" id="type1[]"
